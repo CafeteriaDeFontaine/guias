@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafeteria de Fontaine — Builds & Guias</title>
+  
+  <!-- Fontes Google: Playfair Display (estilo retrô vintage) e Plus Jakarta Sans (leitura limpa e acolhedora) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Ícones Phosphor Icons -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cafe: {
+              50: '#fdfbf7',
+              100: '#f7f2ea',
+              200: '#ede3d5',
+              300: '#dfd0bd',
+              400: '#c5ae93',
+              500: '#9b7e5f',
+              600: '#7a5f45',
+              700: '#5e4835',
+              800: '#463628',
+              900: '#2b2118',
+            },
+            fontaine: {
+              dark: '#163344',
+              primary: '#245a77',
+              light: '#428ba7',
+              surface: '#eaf4f8',
+              accent: '#3aaec9'
+            },
+            latte: '#fbf8f3',
+            parchment: '#f4ede2',
+            brass: '#c89d5c',
+            brassDark: '#a37a3f',
+            wood: '#3b291d',
+          },
+          fontFamily: {
+            serif: ['"Playfair Display"', 'Georgia', 'serif'],
+            display: ['"Cinzel"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          boxShadow: {
+            'cozy': '0 4px 20px -2px rgba(70, 54, 40, 0.08), 0 2px 6px -1px rgba(70, 54, 40, 0.05)',
+            'cozy-lg': '0 10px 30px -4px rgba(70, 54, 40, 0.12), 0 4px 10px -2px rgba(70, 54, 40, 0.06)',
+            'inner-vintage': 'inset 0 2px 4px 0 rgba(70, 54, 40, 0.06)'
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* Estilos e texturas sutis de papel de cafeteria */
+    body {
+      background-color: #f6f1e8;
+      background-image: radial-gradient(#decbb7 0.75px, transparent 0.75px), radial-gradient(#decbb7 0.75px, #f6f1e8 0.75px);
+      background-size: 30px 30px;
+      background-position: 0 0, 15px 15px;
+      color: #3b2b20;
+    }
+
+    /* Scrollbar estilizada */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #eee5d8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c8b49e;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #9b7e5f;
+    }
+
+    .steam-animation {
+      animation: steam 3s infinite ease-in-out;
+    }
+    @keyframes steam {
+      0%, 100% { transform: translateY(0) scaleX(1); opacity: 0.6; }
+      50% { transform: translateY(-4px) scaleX(1.1); opacity: 0.9; }
+    }
+  </style>
+</head>
+
+<body class="font-sans antialiased min-h-screen flex flex-col md:flex-row pb-20 md:pb-0">
+
+  <!-- SIDEBAR DESKTOP (Inspirada no menu de madeira suave da imagem) -->
+  <aside class="hidden md:flex flex-col w-72 bg-[#2d4239] text-[#e8f1ec] shrink-0 min-h-screen p-5 border-r border-[#22332c] shadow-2xl relative select-none">
+    
+    <!-- Logo Estilo Placa de Madeira / Brasão de Fontaine -->
+    <div class="bg-[#3e564c] border-2 border-[#547366] rounded-2xl p-4 text-center shadow-inner relative mb-6">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#c89d5c] text-[#2b2118] text-[10px] font-bold tracking-widest uppercase px-3 py-0.5 rounded-full border border-[#fbf8f3] shadow-sm">
+        Court de Fontaine
+      </div>
+      <div class="flex items-center justify-center gap-2 mt-1">
+        <i class="ph-duotone ph-coffee text-2xl text-[#f3ece1]"></i>
+        <h1 class="font-display font-bold text-xl tracking-wider text-[#fdfbf7]">CAFETERIA</h1>
+      </div>
+      <p class="text-xs text-[#c6ded3] font-serif italic mt-0.5">de Fontaine • Guia de Builds</p>
+    </div>
+
+    <!-- Navegação Principal -->
+    <nav class="space-y-1.5 flex-1" id="desktopNav">
+      <button onclick="switchTab('dashboard')" class="nav-item active flex items-center gap-3.5 w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-200 bg-[#f4ede2] text-[#2c3d35] shadow-sm font-semibold">
+        <i class="ph-fill ph-house text-lg"></i>
+        <span>Visão Geral</span>
+      </button>
+
+      <button onclick="switchTab('builds')" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-200 text-[#d8e7e0] hover:bg-[#385045] hover:text-white">
+        <i class="ph-fill ph-book-open-text text-lg"></i>
+        <span>Cardápio de Builds</span>
+      </button>
+
+      <button onclick="switchTab('domains')" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-200 text-[#d8e7e0] hover:bg-[#385045] hover:text-white">
+        <i class="ph-fill ph-sparkle text-lg"></i>
+        <span>Especial do Dia</span>
+      </button>
+
+      <button onclick="switchTab('resin')" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-200 text-[#d8e7e0] hover:bg-[#385045] hover:text-white">
+        <i class="ph-fill ph-hourglass-high text-lg"></i>
+        <span>Relógio de Resina</span>
+      </button>
+
+      <button onclick="switchTab('notepad')" class="nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-200 text-[#d8e7e0] hover:bg-[#385045] hover:text-white">
+        <i class="ph-fill ph-notepad text-lg"></i>
+        <span>Anotações & Metas</span>
+      </button>
+    </nav>
+
+    <!-- Cartão Mascote / Dica do Barista (Inspirado no Tom Nook na imagem de referência) -->
+    <div class="mt-auto pt-4 border-t border-[#3c564b]">
+      <div class="bg-[#24362f] rounded-2xl p-3.5 border border-[#385045] flex items-center gap-3 shadow-inner">
+        <div class="w-12 h-12 rounded-xl bg-[#39564a] border border-[#527969] flex items-center justify-center text-2xl text-amber-200 shrink-0">
+          ☕
+        </div>
+        <div class="text-xs">
+          <p class="font-bold text-[#f7f2ea] flex items-center gap-1">
+            Dica do Barista
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+          </p>
+          <p class="text-[#b7cfc4] text-[11px] mt-0.5 leading-snug">"Use Resina Condensada nos domínios para dobrar seus cafés e artefatos!"</p>
+        </div>
+      </div>
+      
+      <!-- Link do Repositório GitHub informado pelo usuário -->
+      <a href="https://github.com/CafeteriaDeFontaine/guias" target="_blank" rel="noopener noreferrer" 
+         class="mt-3 flex items-center justify-center gap-2 text-xs text-[#a9c5b8] hover:text-white transition-colors py-1">
+        <i class="ph-bold ph-github-logo text-base"></i>
+        <span>CafeteriaDeFontaine/guias</span>
+      </a>
+    </div>
+  </aside>
+
+  <main class="flex-1 flex flex-col min-w-0 overflow-y-auto">
+    
+    <!-- HEADER DA APLICAÇÃO (Banner acolhedor) -->
+    <header class="bg-[#fcfaf6] border-b border-[#e7dcce] px-5 py-4 md:px-8 md:py-6 shadow-sm">
+      <div class="max-w-7xl mx-auto flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        
+        <!-- Boas-vindas Fontaine -->
+        <div class="flex items-center gap-3">
+          <div class="w-12 h-12 rounded-2xl bg-[#ede3d5] border border-[#d8c5ad] flex items-center justify-center text-fontaine-primary shadow-inner">
+            <i class="ph-duotone ph-coffee-bean text-2xl text-[#9b7e5f]"></i>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h2 class="font-serif text-2xl md:text-3xl font-bold text-cafe-900 tracking-tight">Bienvenue, Viajante!</h2>
+              <span class="text-sm px-2.5 py-0.5 rounded-full bg-[#e3eef4] text-fontaine-primary font-semibold text-xs border border-[#bdd8e7]">Versão 5.x</span>
+            </div>
+            <p class="text-xs md:text-sm text-cafe-600 font-medium">O seu café parisiense para receitas de combate e builds de Teyvat</p>
+          </div>
+        </div>
+
+        <!-- Badges com Horário de Teyvat e Resina Rápida -->
+        <div class="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
+          <div class="bg-latte border border-cafe-200 rounded-2xl px-3.5 py-2 flex items-center gap-2.5 shadow-sm text-xs">
+            <i class="ph-fill ph-clock text-amber-700 text-base"></i>
+            <div>
+              <p class="text-[10px] uppercase font-bold text-cafe-500">Teyvat Time</p>
+              <span id="teyvatClock" class="font-semibold text-cafe-800">12:00 PM</span>
+            </div>
+          </div>
+
+          <div class="bg-latte border border-cafe-200 rounded-2xl px-3.5 py-2 flex items-center gap-2.5 shadow-sm text-xs">
+            <i class="ph-fill ph-drop text-fontaine-light text-base"></i>
+            <div>
+              <p class="text-[10px] uppercase font-bold text-cafe-500">Resina Atual</p>
+              <span id="headerResinDisplay" class="font-bold text-fontaine-dark">160 / 200</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </header>
+
+    <div class="p-4 sm:p-6 md:p-8 max-w-7xl mx-auto w-full space-y-6">
+
+      <!-- SEÇÃO 1: DASHBOARD / VISÃO GERAL (Estilo exato da imagem de referência) -->
+      <section id="section-dashboard" class="tab-content space-y-6">
+        
+        <!-- Banner de Boas-vindas com Ilustração Retrô Decorativa -->
+        <div class="bg-gradient-to-r from-[#245a77] via-[#2f6a89] to-[#397c9f] rounded-3xl p-6 sm:p-8 text-white shadow-cozy-lg relative overflow-hidden border border-[#528ea9]">
+          <div class="absolute -right-8 -bottom-8 opacity-15 text-white pointer-events-none">
+            <i class="ph-duotone ph-coffee text-[190px]"></i>
+          </div>
+          <div class="relative z-10 max-w-xl">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/20 backdrop-blur-sm text-xs font-semibold text-blue-100 mb-3 border border-white/20">
+              <i class="ph-fill ph-cup"></i> Menu Recomendado de Hoje
+            </span>
+            <h3 class="font-serif text-2xl sm:text-3xl font-bold tracking-tight text-white mb-2">
+              "Um bom café cura todo cansaço no Abismo Espiral."
+            </h3>
+            <p class="text-blue-100 text-sm leading-relaxed mb-4">
+              Explore fichas completas, conjuntos de artefatos ideais para os julgamentos de Fontaine e configure suas anotações para nunca esquecer um drop de talento.
+            </p>
+            <div class="flex flex-wrap gap-2.5">
+              <button onclick="switchTab('builds')" class="px-4 py-2 rounded-xl bg-white text-[#1c475e] text-xs font-bold shadow hover:bg-cafe-50 transition-all flex items-center gap-1.5">
+                <i class="ph-bold ph-magnifying-glass"></i> Consultar Builds
+              </button>
+              <button onclick="switchTab('domains')" class="px-4 py-2 rounded-xl bg-[#1a4054]/60 border border-white/20 text-white text-xs font-semibold hover:bg-[#1a4054] transition-all flex items-center gap-1.5">
+                <i class="ph-bold ph-calendar-check"></i> Domínios de Hoje
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GRID WIDGETS (Estilo da imagem de referência: Visão Geral, Domínios Rápidos, Destaques) -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+          <!-- Card 1: Destaque do Cardápio / Barista's Choice -->
+          <div class="bg-[#fdfbf7] rounded-3xl p-5 border border-[#e4d7c5] shadow-cozy flex flex-col justify-between">
+            <div class="flex items-center justify-between pb-3 border-b border-[#ebdccb]">
+              <div class="flex items-center gap-2">
+                <i class="ph-fill ph-crown text-amber-500 text-lg"></i>
+                <h4 class="font-serif font-bold text-cafe-800 text-base">Especial da Casa</h4>
+              </div>
+              <span class="text-[11px] font-bold uppercase tracking-wider text-fontaine-primary bg-[#e6f1f6] px-2.5 py-0.5 rounded-full">Meta Hydro</span>
+            </div>
+
+            <div class="my-4 flex items-center gap-4">
+              <div class="relative w-16 h-16 rounded-2xl overflow-hidden border-2 border-amber-300/80 bg-gradient-to-b from-blue-100 to-blue-200 shrink-0 shadow-inner flex items-center justify-center text-3xl">
+                💧
+              </div>
+              <div>
+                <h5 class="font-serif font-bold text-cafe-900 text-lg">Furina</h5>
+                <p class="text-xs text-fontaine-primary font-semibold italic">"L’Espresso Divin"</p>
+                <div class="flex items-center gap-1 mt-1 text-xs text-cafe-500">
+                  <span class="text-amber-500">★★★★★</span>
+                  <span>• Sub-DPS & Buffer</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="bg-latte p-3 rounded-2xl border border-cafe-200 text-xs space-y-1 mb-4">
+              <div class="flex justify-between">
+                <span class="text-cafe-500">Conjunto:</span>
+                <span class="font-semibold text-cafe-800">Tropepeiro Dourado (4p)</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-cafe-500">Arma F2P:</span>
+                <span class="font-semibold text-cafe-800">Cano de Chave Inglesa</span>
+              </div>
+            </div>
+
+            <button onclick="openCharacterModal('furina')" class="w-full py-2.5 rounded-xl bg-cafe-800 text-[#fdfbf7] font-semibold text-xs hover:bg-cafe-900 transition-colors shadow flex items-center justify-center gap-2">
+              <i class="ph-bold ph-eye"></i> Ver Receita Completa
+            </button>
+          </div>
+
+          <!-- Card 2: Status do Viajante (Semelhante ao widget da imagem: tarefas e checklist rápido) -->
+          <div class="bg-[#fdfbf7] rounded-3xl p-5 border border-[#e4d7c5] shadow-cozy flex flex-col justify-between">
+            <div class="flex items-center justify-between pb-3 border-b border-[#ebdccb]">
+              <div class="flex items-center gap-2">
+                <i class="ph-fill ph-check-circle text-emerald-600 text-lg"></i>
+                <h4 class="font-serif font-bold text-cafe-800 text-base">Rotina Diária</h4>
+              </div>
+              <span id="quickTaskCount" class="text-xs font-semibold text-cafe-600 bg-cafe-100 px-2 py-0.5 rounded-full">0/4 Feitas</span>
+            </div>
+
+            <div class="space-y-2.5 my-3" id="quickTaskWidgetList">
+              <!-- Renderizado via JS -->
+            </div>
+
+            <button onclick="switchTab('notepad')" class="w-full py-2 rounded-xl bg-cafe-100 text-cafe-800 font-semibold text-xs hover:bg-cafe-200 transition-colors flex items-center justify-center gap-1.5 border border-cafe-200">
+              <i class="ph-bold ph-plus-circle"></i> Abrir Todas as Metas
+            </button>
+          </div>
+
+          <!-- Card 3: Domínios de Livros & Armas do Dia -->
+          <div class="bg-[#fdfbf7] rounded-3xl p-5 border border-[#e4d7c5] shadow-cozy flex flex-col justify-between">
+            <div class="flex items-center justify-between pb-3 border-b border-[#ebdccb]">
+              <div class="flex items-center gap-2">
+                <i class="ph-fill ph-scroll text-amber-700 text-lg"></i>
+                <h4 class="font-serif font-bold text-cafe-800 text-base">Domínios de Hoje</h4>
+              </div>
+              <span id="todayDayNameBadge" class="text-[11px] font-bold text-cafe-700 bg-amber-100/70 border border-amber-200 px-2 py-0.5 rounded-full">Segunda</span>
+            </div>
+
+            <div class="my-3 space-y-2.5" id="dashboardDomainPreview">
+              <!-- Preenchido via JS dinamicamente com materiais do dia atual -->
+            </div>
+
+            <button onclick="switchTab('domains')" class="w-full py-2.5 rounded-xl bg-fontaine-primary text-white font-semibold text-xs hover:bg-fontaine-dark transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <i class="ph-bold ph-calendar-blank"></i> Consultar Todos os Dias
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Carrossel de Personagens em Destaque (Inspirado no widget "Invånare / Habitantes" da imagem) -->
+        <div class="bg-[#fdfbf7] rounded-3xl p-6 border border-[#e4d7c5] shadow-cozy">
+          <div class="flex items-center justify-between mb-4">
+            <div>
+              <h4 class="font-serif font-bold text-cafe-900 text-lg">Habitantes de Fontaine & Hóspedes do Café</h4>
+              <p class="text-xs text-cafe-500">Clique para inspecionar os detalhes de armas e artefatos</p>
+            </div>
+            <button onclick="switchTab('builds')" class="text-xs text-fontaine-primary hover:text-fontaine-dark font-bold flex items-center gap-1">
+              Ver todos <i class="ph-bold ph-caret-right"></i>
+            </button>
+          </div>
+
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-3.5" id="residentAvatarsGrid">
+            <!-- Gerado via script -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- SEÇÃO 2: CARDÁPIO DE BUILDS (Catálogo Completo) -->
+      <section id="section-builds" class="tab-content hidden space-y-6">
+        
+        <!-- Barra de Busca e Filtros Vintage -->
+        <div class="bg-[#fdfbf7] rounded-3xl p-5 sm:p-6 border border-[#e4d7c5] shadow-cozy space-y-4">
+          
+          <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
+            <div class="relative w-full sm:w-80">
+              <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-cafe-400"></i>
+              <input type="text" id="characterSearchInput" placeholder="Buscar personagem (ex: Furina, Navia)..." 
+                class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-latte border border-cafe-200 text-xs sm:text-sm text-cafe-800 focus:outline-none focus:ring-2 focus:ring-fontaine-primary focus:border-transparent transition-all placeholder:text-cafe-400">
+            </div>
+
+            <!-- Contador de Resultados -->
+            <div class="text-xs text-cafe-600 font-medium">
+              Mostrando <span id="characterCountBadge" class="font-bold text-cafe-900">0</span> receitas de combate
+            </div>
+          </div>
+
+          <!-- Filtro por Elementos -->
+          <div class="flex flex-wrap items-center gap-1.5 pt-2 border-t border-cafe-100">
+            <span class="text-xs font-semibold text-cafe-500 mr-2 flex items-center gap-1">
+              <i class="ph-fill ph-drop"></i> Elemento:
+            </span>
+            <button onclick="filterElement('ALL')" class="elem-btn active px-3 py-1.5 rounded-xl text-xs font-semibold transition-all bg-cafe-800 text-white">Todos</button>
+            <button onclick="filterElement('Hydro')" class="elem-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-blue-50 text-blue-800 border border-blue-200 hover:bg-blue-100 transition-all">Hydro 💧</button>
+            <button onclick="filterElement('Pyro')" class="elem-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-red-50 text-red-800 border border-red-200 hover:bg-red-100 transition-all">Pyro 🔥</button>
+            <button onclick="filterElement('Electro')" class="elem-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-purple-50 text-purple-800 border border-purple-200 hover:bg-purple-100 transition-all">Electro ⚡</button>
+            <button onclick="filterElement('Geo')" class="elem-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200 hover:bg-amber-100 transition-all">Geo 🪨</button>
+            <button onclick="filterElement('Cryo')" class="elem-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-cyan-50 text-cyan-800 border border-cyan-200 hover:bg-cyan-100 transition-all">Cryo ❄️</button>
+            <button onclick="filterElement('Dendro')" class="elem-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200 hover:bg-emerald-100 transition-all">Dendro 🍃</button>
+            <button onclick="filterElement('Anemo')" class="elem-btn px-3 py-1.5 rounded-xl text-xs font-semibold bg-teal-50 text-teal-800 border border-teal-200 hover:bg-teal-100 transition-all">Anemo 🌪️</button>
+          </div>
+
+          <!-- Filtro por Função / Função do Barista -->
+          <div class="flex flex-wrap items-center gap-1.5">
+            <span class="text-xs font-semibold text-cafe-500 mr-2 flex items-center gap-1">
+              <i class="ph-fill ph-crosshair"></i> Função:
+            </span>
+            <button onclick="filterRole('ALL')" class="role-btn active px-3 py-1 rounded-xl text-xs font-medium bg-cafe-700 text-white">Todas</button>
+            <button onclick="filterRole('Main DPS')" class="role-btn px-3 py-1 rounded-xl text-xs font-medium bg-cafe-100 text-cafe-700 hover:bg-cafe-200">Main DPS</button>
+            <button onclick="filterRole('Sub-DPS')" class="role-btn px-3 py-1 rounded-xl text-xs font-medium bg-cafe-100 text-cafe-700 hover:bg-cafe-200">Sub-DPS</button>
+            <button onclick="filterRole('Suporte')" class="role-btn px-3 py-1 rounded-xl text-xs font-medium bg-cafe-100 text-cafe-700 hover:bg-cafe-200">Suporte / Healer</button>
+          </div>
+
+        </div>
+
+        <!-- Grade de Cartões de Builds -->
+        <div id="buildsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Injetado via Javascript -->
+        </div>
+
+      </section>
+
+      <!-- SEÇÃO 3: DOMÍNIOS & DIAS DA SEMANA -->
+      <section id="section-domains" class="tab-content hidden space-y-6">
+        
+        <div class="bg-[#fdfbf7] rounded-3xl p-6 border border-[#e4d7c5] shadow-cozy">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+            <div>
+              <div class="flex items-center gap-2">
+                <i class="ph-fill ph-calendar text-fontaine-primary text-xl"></i>
+                <h3 class="font-serif font-bold text-cafe-900 text-xl">Agenda de Materiais & Domínios</h3>
+              </div>
+              <p class="text-xs text-cafe-500 mt-1">Descubra em quais dias os livros de talentos e materiais de ascensão de armas estão abertos.</p>
+            </div>
+
+            <!-- Seletor de Dias da Semana -->
+            <div class="flex flex-wrap gap-1.5" id="dayButtonsContainer">
+              <button onclick="selectDay(1)" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all">Seg</button>
+              <button onclick="selectDay(2)" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all">Ter</button>
+              <button onclick="selectDay(3)" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all">Qua</button>
+              <button onclick="selectDay(4)" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all">Qui</button>
+              <button onclick="selectDay(5)" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all">Sex</button>
+              <button onclick="selectDay(6)" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all">Sáb</button>
+              <button onclick="selectDay(0)" class="day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all">Dom</button>
+            </div>
+          </div>
+
+          <!-- Conteúdo dos Domínios do Dia Selecionado -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="domainsDisplayContainer">
+            <!-- Livros de Talento e Armas renderizados dinamicamente -->
+          </div>
+        </div>
+
+      </section>
+
+      <!-- SEÇÃO 4: CALCULADORA DE RESINA ORIGINAL -->
+      <section id="section-resin" class="tab-content hidden space-y-6">
+        
+        <div class="bg-[#fdfbf7] rounded-3xl p-6 sm:p-8 border border-[#e4d7c5] shadow-cozy max-w-3xl mx-auto">
+          <div class="text-center max-w-lg mx-auto mb-8">
+            <div class="w-14 h-14 bg-fontaine-surface text-fontaine-primary rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-inner text-2xl">
+              <i class="ph-duotone ph-drop-half-bottom"></i>
+            </div>
+            <h3 class="font-serif font-bold text-cafe-900 text-2xl">Calculadora de Resina de Fontaine</h3>
+            <p class="text-xs text-cafe-600 mt-1">Acompanhe seu tempo de regeneração (1 ponto de Resina a cada 8 minutos) e planeje suas sessões de farm no café.</p>
+          </div>
+
+          <div class="bg-latte p-6 rounded-2xl border border-cafe-200 space-y-5">
+            <div>
+              <div class="flex justify-between items-center mb-2">
+                <label for="resinInput" class="text-xs font-bold uppercase tracking-wider text-cafe-700">Resina Atual no Jogo</label>
+                <span id="resinInputDisplay" class="font-mono font-bold text-fontaine-primary text-base">120 / 200</span>
+              </div>
+              <input type="range" id="resinInput" min="0" max="200" value="120" 
+                class="w-full h-2.5 bg-cafe-200 rounded-lg appearance-none cursor-pointer accent-[#245a77]"
+                oninput="updateResinCalculator(this.value)">
+            </div>
+
+            <!-- Cards de Resultados -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-3.5 pt-2">
+              <div class="bg-[#fdfbf7] p-3.5 rounded-xl border border-cafe-200 text-center">
+                <span class="text-[10px] uppercase font-bold text-cafe-500">Até o Limite (200)</span>
+                <p id="resinTimeToFull" class="font-serif font-bold text-base text-cafe-900 mt-1">10h 40m</p>
+                <span id="resinFullTimestamp" class="text-[11px] text-cafe-500 font-medium">Hoje às 18:30</span>
+              </div>
+
+              <div class="bg-[#fdfbf7] p-3.5 rounded-xl border border-cafe-200 text-center">
+                <span class="text-[10px] uppercase font-bold text-cafe-500">Resina Condensada</span>
+                <p id="resinCanCraftCondensed" class="font-serif font-bold text-base text-fontaine-primary mt-1">3 Frascos</p>
+                <span class="text-[11px] text-cafe-500 font-medium">40 resinas cada</span>
+              </div>
+
+              <div class="bg-[#fdfbf7] p-3.5 rounded-xl border border-cafe-200 text-center">
+                <span class="text-[10px] uppercase font-bold text-cafe-500">Corridas de Domínio</span>
+                <p id="resinDomainRuns" class="font-serif font-bold text-base text-amber-700 mt-1">6 Vezes</p>
+                <span class="text-[11px] text-cafe-500 font-medium">20 resinas por run</span>
+              </div>
+            </div>
+
+            <!-- Botões Rápidos de Ajuste -->
+            <div class="flex flex-wrap gap-2 justify-center pt-2">
+              <button onclick="setResinQuick(0)" class="px-3 py-1 rounded-lg bg-cafe-200 text-cafe-800 text-xs font-semibold hover:bg-cafe-300">0 (Zerar)</button>
+              <button onclick="setResinQuick(40)" class="px-3 py-1 rounded-lg bg-cafe-200 text-cafe-800 text-xs font-semibold hover:bg-cafe-300">40</button>
+              <button onclick="setResinQuick(80)" class="px-3 py-1 rounded-lg bg-cafe-200 text-cafe-800 text-xs font-semibold hover:bg-cafe-300">80</button>
+              <button onclick="setResinQuick(160)" class="px-3 py-1 rounded-lg bg-cafe-200 text-cafe-800 text-xs font-semibold hover:bg-cafe-300">160</button>
+              <button onclick="setResinQuick(200)" class="px-3 py-1 rounded-lg bg-cafe-200 text-cafe-800 text-xs font-semibold hover:bg-cafe-300">200 (Cheia)</button>
+            </div>
+          </div>
+        </div>
+
+      </section>
+
+      <!-- SEÇÃO 5: ANOTAÇÕES & METAS DA CAFETERIA (LocalStorage) -->
+      <section id="section-notepad" class="tab-content hidden space-y-6">
+        
+        <div class="bg-[#fdfbf7] rounded-3xl p-6 sm:p-8 border border-[#e4d7c5] shadow-cozy max-w-4xl mx-auto">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-cafe-200">
+            <div>
+              <div class="flex items-center gap-2">
+                <i class="ph-duotone ph-notebook text-amber-700 text-2xl"></i>
+                <h3 class="font-serif font-bold text-cafe-900 text-2xl">Caderno de Pedidos & Metas</h3>
+              </div>
+              <p class="text-xs text-cafe-500 mt-1">Suas anotações são salvas automaticamente no seu navegador.</p>
+            </div>
+
+            <button onclick="clearCompletedTasks()" class="text-xs font-semibold text-cafe-600 hover:text-red-600 transition-colors flex items-center gap-1 self-start sm:self-auto">
+              <i class="ph-bold ph-trash"></i> Limpar Concluídas
+            </button>
+          </div>
+
+          <!-- Formulário de Nova Tarefa -->
+          <form id="todoForm" onsubmit="addTask(event)" class="mt-6 flex flex-col sm:flex-row gap-2.5">
+            <div class="relative flex-1">
+              <i class="ph-bold ph-pencil-simple absolute left-3.5 top-1/2 -translate-y-1/2 text-cafe-400"></i>
+              <input type="text" id="taskInput" placeholder="Ex: Farmar 168 Lírios Lumidouce para a Furina..." required
+                class="w-full pl-10 pr-4 py-2.5 rounded-2xl bg-latte border border-cafe-200 text-xs sm:text-sm text-cafe-800 focus:outline-none focus:ring-2 focus:ring-fontaine-primary">
+            </div>
+
+            <select id="taskCategorySelect" class="py-2.5 px-3 rounded-2xl bg-latte border border-cafe-200 text-xs sm:text-sm text-cafe-800 focus:outline-none focus:ring-2 focus:ring-fontaine-primary">
+              <option value="Farm">🌾 Farm de Materiais</option>
+              <option value="Artefatos">🏺 Artefatos</option>
+              <option value="Abismo">⚔️ Abismo / Teatro</option>
+              <option value="Semanal">📅 Chefe Semanal</option>
+              <option value="Geral">☕ Outro</option>
+            </select>
+
+            <button type="submit" class="px-5 py-2.5 rounded-2xl bg-fontaine-primary text-white font-semibold text-xs sm:text-sm hover:bg-fontaine-dark transition-all flex items-center justify-center gap-1.5 shadow-sm">
+              <i class="ph-bold ph-plus"></i> Adicionar
+            </button>
+          </form>
+
+          <!-- Lista de Tarefas -->
+          <div class="mt-6 space-y-2.5" id="taskListContainer">
+            <!-- Gerado via JavaScript -->
+          </div>
+        </div>
+
+      </section>
+
+    </div>
+  </main>
+
+  <!-- BARRA DE NAVEGAÇÃO MOBILE (Fixa no rodapé para smartphones) -->
+  <nav class="md:hidden fixed bottom-0 left-0 right-0 bg-[#2d4239] text-[#d8e7e0] border-t border-[#22332c] px-3 py-2 flex items-center justify-around z-40 shadow-2xl backdrop-blur-md">
+    <button onclick="switchTab('dashboard')" class="mobile-nav-btn active flex flex-col items-center gap-0.5 text-xs text-[#f4ede2] font-semibold">
+      <i class="ph-fill ph-house text-xl"></i>
+      <span class="text-[10px]">Início</span>
+    </button>
+    <button onclick="switchTab('builds')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-xs text-[#a9c5b8] hover:text-[#f4ede2]">
+      <i class="ph-fill ph-book-open-text text-xl"></i>
+      <span class="text-[10px]">Builds</span>
+    </button>
+    <button onclick="switchTab('domains')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-xs text-[#a9c5b8] hover:text-[#f4ede2]">
+      <i class="ph-fill ph-calendar text-xl"></i>
+      <span class="text-[10px]">Domínios</span>
+    </button>
+    <button onclick="switchTab('resin')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-xs text-[#a9c5b8] hover:text-[#f4ede2]">
+      <i class="ph-fill ph-hourglass text-xl"></i>
+      <span class="text-[10px]">Resina</span>
+    </button>
+    <button onclick="switchTab('notepad')" class="mobile-nav-btn flex flex-col items-center gap-0.5 text-xs text-[#a9c5b8] hover:text-[#f4ede2]">
+      <i class="ph-fill ph-notepad text-xl"></i>
+      <span class="text-[10px]">Metas</span>
+    </button>
+  </nav>
+
+  <!-- MODAL DE DETALHES DA BUILD (Menu Especial / Ficha Detalhada) -->
+  <div id="characterModal" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
+    <div class="bg-[#fbf8f2] border-2 border-[#d8c5ad] rounded-3xl max-w-2xl w-full my-auto shadow-2xl overflow-hidden relative animate-in fade-in zoom-in-95 duration-200">
+      
+      <!-- Cabeçalho do Modal estilo Menu Elegante -->
+      <div class="relative bg-gradient-to-r from-cafe-800 to-cafe-900 text-[#fbf8f2] p-5 sm:p-6 border-b border-brass/40">
+        <button onclick="closeCharacterModal()" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors">
+          <i class="ph-bold ph-x text-base"></i>
+        </button>
+
+        <div class="flex items-center gap-4">
+          <div id="modalCharEmoji" class="w-16 h-16 rounded-2xl bg-white/10 border border-white/20 flex items-center justify-center text-3xl shadow-inner">
+            ☕
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h3 id="modalCharName" class="font-serif font-bold text-2xl text-white">Nome do Personagem</h3>
+              <span id="modalCharElement" class="px-2.5 py-0.5 rounded-full text-xs font-bold bg-white/20">Elemento</span>
+            </div>
+            <p id="modalCharBeverage" class="text-amber-200 text-xs sm:text-sm font-serif italic mt-0.5">"Apelido de Bebida do Café"</p>
+            <p id="modalCharRole" class="text-xs text-white/70 mt-1">Função • Raridade</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Conteúdo do Modal (Scrollável se necessário) -->
+      <div class="p-5 sm:p-6 space-y-5 max-h-[75vh] overflow-y-auto">
+
+        <!-- 1. Armas Recomendadas -->
+        <div>
+          <h4 class="font-serif font-bold text-cafe-900 text-sm flex items-center gap-2 mb-2.5">
+            <i class="ph-fill ph-sword text-amber-700"></i> Armas Recomendadas
+          </h4>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="modalWeaponsList">
+            <!-- Injetado dinamicamente -->
+          </div>
+        </div>
+
+        <!-- 2. Artefatos & Estatísticas -->
+        <div>
+          <h4 class="font-serif font-bold text-cafe-900 text-sm flex items-center gap-2 mb-2.5">
+            <i class="ph-fill ph-shield-chevron text-fontaine-primary"></i> Melhores Artefatos & Atributos
+          </h4>
+          
+          <div class="bg-latte p-4 rounded-2xl border border-cafe-200 space-y-3">
+            <div>
+              <span class="text-xs font-bold text-cafe-600 block mb-1">Conjuntos Recomendados:</span>
+              <p id="modalArtifactSet" class="text-xs sm:text-sm font-semibold text-cafe-900"></p>
+            </div>
+
+            <!-- Grade de Atributos Principais -->
+            <div class="grid grid-cols-3 gap-2 pt-2 border-t border-cafe-200 text-center">
+              <div class="bg-[#fdfbf7] p-2 rounded-xl border border-cafe-200">
+                <span class="text-[10px] font-bold uppercase text-cafe-500 block">Ampulheta</span>
+                <span id="modalSandsStat" class="text-xs font-semibold text-cafe-800">Recarga / Vida</span>
+              </div>
+              <div class="bg-[#fdfbf7] p-2 rounded-xl border border-cafe-200">
+                <span class="text-[10px] font-bold uppercase text-cafe-500 block">Cálice</span>
+                <span id="modalGobletStat" class="text-xs font-semibold text-cafe-800">Dano Elemental</span>
+              </div>
+              <div class="bg-[#fdfbf7] p-2 rounded-xl border border-cafe-200">
+                <span class="text-[10px] font-bold uppercase text-cafe-500 block">Tiara</span>
+                <span id="modalCircletStat" class="text-xs font-semibold text-cafe-800">Taxa / Dano Crítico</span>
+              </div>
+            </div>
+
+            <div>
+              <span class="text-[11px] font-bold text-cafe-600 block mb-0.5">Prioridade de Subatributos:</span>
+              <p id="modalSubstats" class="text-xs text-cafe-700"></p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Ordem de Prioridade de Talentos -->
+        <div>
+          <h4 class="font-serif font-bold text-cafe-900 text-sm flex items-center gap-2 mb-2">
+            <i class="ph-fill ph-star text-amber-500"></i> Ordem de Talentos
+          </h4>
+          <div id="modalTalentsPriority" class="text-xs bg-latte p-3 rounded-2xl border border-cafe-200 text-cafe-800 font-medium"></div>
+        </div>
+
+        <!-- 4. Melhores Combinações / Equipe -->
+        <div>
+          <h4 class="font-serif font-bold text-cafe-900 text-sm flex items-center gap-2 mb-2">
+            <i class="ph-fill ph-users-three text-emerald-700"></i> Companhias de Café (Equipes Típicas)
+          </h4>
+          <div id="modalTeamSynergy" class="flex flex-wrap gap-2"></div>
+        </div>
+
+      </div>
+
+      <!-- Rodapé do Modal -->
+      <div class="bg-latte px-6 py-3.5 border-t border-cafe-200 flex justify-end">
+        <button onclick="closeCharacterModal()" class="px-4 py-2 rounded-xl bg-cafe-800 text-white text-xs font-semibold hover:bg-cafe-900 transition-colors">
+          Fechar Receita
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    /* BANCO DE DADOS DOS PERSONAGENS & BUILDS (Cardápio da Cafeteria) */
+    const CHARACTERS_DATA = [
+      {
+        id: 'furina',
+        name: 'Furina',
+        title: 'Regina de Águas e Mares',
+        beverage: 'L’Espresso Divin',
+        element: 'Hydro',
+        elementIcon: '💧',
+        stars: 5,
+        role: 'Sub-DPS',
+        description: 'Capaz de amplificar o dano de toda a equipe drenando e regenerando vida com seus convidados de salão.',
+        weapons: {
+          bis: 'Esplendor das Águas Silenciosas (5★)',
+          fourStar: 'Espada do Vaso das Trevas (4★)',
+          f2p: 'Cano de Chave Inglesa de Fontaine (F2P - Pesca)'
+        },
+        artifacts: {
+          set: '4x Trupe Dourada (Golden Troupe)',
+          sands: 'Vida% ou Recarga de Energia',
+          goblet: 'Vida% ou Dano Hydro',
+          circlet: 'Taxa Crítica ou Dano Crítico',
+          substats: 'Recarga de Energia > Taxa/Dano Crítico > Vida% > Vida Flat'
+        },
+        talents: 'Habilidade Elemental (E) = Supremo (Q) > Ataque Normal (NA - Não upar)',
+        teams: ['Neuvillette', 'Baizhu', 'Kazuha', 'Jean', 'Hu Tao', 'Yelan']
+      },
+      {
+        id: 'neuvillette',
+        name: 'Neuvillette',
+        title: 'Juiz Supremo de Fontaine',
+        beverage: 'Capuccino de Água Mineral',
+        element: 'Hydro',
+        elementIcon: '💧',
+        stars: 5,
+        role: 'Main DPS',
+        description: 'Atacante colossal baseado em Vida com raio contínuo de Julgamento Justo.',
+        weapons: {
+          bis: 'Rito do Fluxo Eterno (5★)',
+          fourStar: 'Protótipo Âmbar (4★ - Forja F2P)',
+          f2p: 'Sacrifício de Jade (4★ Passe)'
+        },
+        artifacts: {
+          set: '4x Caçador das Sombras (Marechaussee Hunter)',
+          sands: 'Vida%',
+          goblet: 'Dano Hydro ou Vida%',
+          circlet: 'Dano Crítico ou Vida%',
+          substats: 'Dano Crítico > Taxa Crítica (até 64%) > Vida% > Recarga de Energia'
+        },
+        talents: 'Ataque Normal (Ataque Carregado) > Supremo (Q) = Habilidade Elemental (E)',
+        teams: ['Furina', 'Kazuha', 'Zhongli', 'Baizhu', 'Fischl', 'Xianyun']
+      },
+      {
+        id: 'navia',
+        name: 'Navia',
+        title: 'Presidente da Spina di Rosula',
+        beverage: 'Macaron de Rosas com Chantilly',
+        element: 'Geo',
+        elementIcon: '🪨',
+        stars: 5,
+        role: 'Main DPS',
+        description: 'Dispara tiros devastadores com seu guarda-chuva de canhão ao absorver cristais de Cristalização.',
+        weapons: {
+          bis: 'Veredito (5★)',
+          fourStar: 'Sombra da Serpente (4★ Passe)',
+          f2p: 'Mega Ultra Espadão Mágico (4★ Evento/Forja)'
+        },
+        artifacts: {
+          set: '4x Ecos da Floresta Noturna (Nighttime Whispers)',
+          sands: 'Ataque%',
+          goblet: 'Dano Geo',
+          circlet: 'Taxa Crítica ou Dano Crítico',
+          substats: 'Taxa/Dano Crítico > Ataque% > Recarga de Energia'
+        },
+        talents: 'Habilidade Elemental (E) > Ataque Normal > Supremo (Q)',
+        teams: ['Zhongli', 'Bennett', 'Xiangling', 'Furina', 'Chiori']
+      },
+      {
+        id: 'arlecchino',
+        name: 'Arlecchino',
+        title: 'A Serva (Oceano das Cinzas)',
+        beverage: 'Mocca Escuro com Pimenta',
+        element: 'Pyro',
+        elementIcon: '🔥',
+        stars: 5,
+        role: 'Main DPS',
+        description: 'Consome Contratos de Vida para desferir golpes letais infundidos em chamas puras.',
+        weapons: {
+          bis: 'Semblante da Lua Carmesim (5★)',
+          fourStar: 'Pederneira da Montanha (4★)',
+          f2p: 'Borla Branca (3★ Baús de Liyue F2P)'
+        },
+        artifacts: {
+          set: '4x Fragmento da Harmonia Fantástica (Whimsy)',
+          sands: 'Ataque% ou Proficiência Elemental',
+          goblet: 'Dano Pyro',
+          circlet: 'Taxa Crítica ou Dano Crítico',
+          substats: 'Taxa/Dano Crítico > Ataque% > Proficiência > Recarga'
+        },
+        talents: 'Ataque Normal > Habilidade Elemental (E) = Supremo (Q)',
+        teams: ['Yelan', 'Xingqiu', 'Bennett', 'Kazuha', 'Zhongli', 'Chevreuse']
+      },
+      {
+        id: 'clorinde',
+        name: 'Clorinde',
+        title: 'Campeã Duelista de Fontaine',
+        beverage: 'Café Cold Brew com Toque Cítrico',
+        element: 'Electro',
+        elementIcon: '⚡',
+        stars: 5,
+        role: 'Main DPS',
+        description: 'Estilo de combate veloz e dinâmico alternando pistola e florete através do Contrato de Vida.',
+        weapons: {
+          bis: 'Absolvição (5★)',
+          fourStar: 'Espada Negra (4★ Passe)',
+          f2p: 'Final das Profundezas (4★ Forja Fontaine)'
+        },
+        artifacts: {
+          set: '4x Fragmento da Harmonia Fantástica ou 4x Trovão Furioso',
+          sands: 'Ataque%',
+          goblet: 'Dano Electro',
+          circlet: 'Taxa/Dano Crítico',
+          substats: 'Taxa/Dano Crítico > Ataque% > Proficiência Elemental'
+        },
+        talents: 'Habilidade Elemental (E) > Supremo (Q) > Ataque Normal',
+        teams: ['Nahida', 'Fischl', 'Furina', 'Zhongli', 'Kazuha']
+      },
+      {
+        id: 'wriothesley',
+        name: 'Wriothesley',
+        title: 'Duque da Fortaleza Meropide',
+        beverage: 'Chá Preto Forte com Mel e Canela',
+        element: 'Cryo',
+        elementIcon: '❄️',
+        stars: 5,
+        role: 'Main DPS',
+        description: 'Boxeador de gelo com socos ágeis que tiram proveito de flutuações de HP.',
+        weapons: {
+          bis: 'Supervisão de Caixa (5★)',
+          fourStar: 'Sinfonia dos Indolentes (4★)',
+          f2p: 'Fluxo da Pureza (4★ Forja Fontaine)'
+        },
+        artifacts: {
+          set: '4x Caçador das Sombras (Marechaussee Hunter)',
+          sands: 'Ataque% ou Proficiência',
+          goblet: 'Dano Cryo',
+          circlet: 'Dano Crítico',
+          substats: 'Dano Crítico > Taxa Crítica > Ataque% > Proficiência'
+        },
+        talents: 'Ataque Normal > Habilidade Elemental (E) > Supremo (Q)',
+        teams: ['Shenhe', 'Kazuha', 'Bennett', 'Xiangling', 'Mika', 'Furina']
+      },
+      {
+        id: 'xianyun',
+        name: 'Xianyun',
+        title: 'Retentora de Nuvem',
+        beverage: 'Chá Branco de Jasmim das Alturas',
+        element: 'Anemo',
+        elementIcon: '🌪️',
+        stars: 5,
+        role: 'Suporte',
+        description: 'Permite ataques imersivos a qualquer personagem e cura a equipe inteira.',
+        weapons: {
+          bis: 'Eco do Chamado da Garça (5★)',
+          fourStar: 'Olho do Juramento (4★)',
+          f2p: 'Histórias de Favonius (4★)'
+        },
+        artifacts: {
+          set: '4x Sombra Verde (Viridescent Venerer) ou 4x Ritual Real',
+          sands: 'Ataque% ou Recarga de Energia',
+          goblet: 'Ataque%',
+          circlet: 'Ataque% ou Bônus de Cura',
+          substats: 'Recarga de Energia > Ataque% > Ataque Flat'
+        },
+        talents: 'Supremo (Q) > Habilidade Elemental (E) > Ataque Normal',
+        teams: ['Xiao', 'Gaming', 'Hu Tao', 'Furina', 'Diluc']
+      },
+      {
+        id: 'nahida',
+        name: 'Nahida',
+        title: 'Menor Lorde Kusanali',
+        beverage: 'Matcha Latte com Leite Vegetal',
+        element: 'Dendro',
+        elementIcon: '🍃',
+        stars: 5,
+        role: 'Sub-DPS',
+        description: 'A deusa de Dendro que provê aplicação contínua e compartilha até 250 de Proficiência Elemental.',
+        weapons: {
+          bis: 'Sonhos Flutuantes das Mil Noites (5★)',
+          fourStar: 'Memórias de Sacrifício (4★)',
+          f2p: 'Mappa Mare (4★ Forja)'
+        },
+        artifacts: {
+          set: '4x Memórias da Floresta (Deepwood Memories)',
+          sands: 'Proficiência Elemental',
+          goblet: 'Proficiência Elemental ou Dano Dendro',
+          circlet: 'Proficiência Elemental ou Taxa Crítica',
+          substats: 'Proficiência Elemental (até 1000) > Taxa/Dano Crítico > Recarga'
+        },
+        talents: 'Habilidade Elemental (E) > Supremo (Q)',
+        teams: ['Alhaitham', 'Nilou', 'Yelan', 'Kuki Shinobu', 'Cyno']
+      }
+    ];
+
+    /* DADOS DOS DOMÍNIOS DE MATERIAIS CONFORME O DIA DA SEMANA */
+    const DOMAINS_SCHEDULE = {
+      // 1 = Segunda, 2 = Terça, etc. 0 = Domingo
+      1: {
+        day: 'Segunda-feira',
+        fontaineTalents: 'Equidade (Lyney, Neuvillette)',
+        fontaineWeapons: 'Gota de Orvalho Puro (Armas de Fontaine)',
+        otherRegions: 'Liberdade (Mondstadt), Prosperidade (Liyue), Transitoriedade (Inazuma), Admoestação (Sumeru)'
+      },
+      2: {
+        day: 'Terça-feira',
+        fontaineTalents: 'Justiça (Freminet, Furina, Clorinde)',
+        fontaineWeapons: 'Cálice de Marrom Puro (Armas de Fontaine)',
+        otherRegions: 'Resistência (Mondstadt), Diligência (Liyue), Elegância (Inazuma), Engenho (Sumeru)'
+      },
+      3: {
+        day: 'Quarta-feira',
+        fontaineTalents: 'Ordem (Wriothesley, Navia, Arlecchino)',
+        fontaineWeapons: 'Fragmento de Corda Antiga (Armas de Fontaine)',
+        otherRegions: 'Poesia (Mondstadt), Ouro (Liyue), Luz (Inazuma), Práxis (Sumeru)'
+      },
+      4: {
+        day: 'Quinta-feira',
+        fontaineTalents: 'Equidade (Lyney, Neuvillette)',
+        fontaineWeapons: 'Gota de Orvalho Puro (Armas de Fontaine)',
+        otherRegions: 'Liberdade (Mondstadt), Prosperidade (Liyue), Transitoriedade (Inazuma), Admoestação (Sumeru)'
+      },
+      5: {
+        day: 'Sexta-feira',
+        fontaineTalents: 'Justiça (Freminet, Furina, Clorinde)',
+        fontaineWeapons: 'Cálice de Marrom Puro (Armas de Fontaine)',
+        otherRegions: 'Resistência (Mondstadt), Diligência (Liyue), Elegância (Inazuma), Engenho (Sumeru)'
+      },
+      6: {
+        day: 'Sábado',
+        fontaineTalents: 'Ordem (Wriothesley, Navia, Arlecchino)',
+        fontaineWeapons: 'Fragmento de Corda Antiga (Armas de Fontaine)',
+        otherRegions: 'Poesia (Mondstadt), Ouro (Liyue), Luz (Inazuma), Práxis (Sumeru)'
+      },
+      0: {
+        day: 'Domingo',
+        fontaineTalents: '✨ Todos os Livros de Fontaine Abertos!',
+        fontaineWeapons: '✨ Todos os Materiais de Armas Abertos!',
+        otherRegions: '✨ Todos os domínios de todas as nações estão abertos hoje!'
+      }
+    };
+
+    /* ESTADO DA APLICAÇÃO */
+    let currentElementFilter = 'ALL';
+    let currentRoleFilter = 'ALL';
+    let currentSearchTerm = '';
+    let selectedDayOfWeek = new Date().getDay(); // Dia atual do sistema
+
+    /* INICIALIZAÇÃO */
+    document.addEventListener('DOMContentLoaded', () => {
+      renderResidentsAvatars();
+      renderBuildsGrid();
+      selectDay(selectedDayOfWeek);
+      initResinClock();
+      loadTasks();
+      setupSearchListener();
+      updateTeyvatClock();
+      setInterval(updateTeyvatClock, 1000);
+    });
+
+    /* NAVEGAÇÃO DE ABAS */
+    function switchTab(tabId) {
+      document.querySelectorAll('.tab-content').forEach(section => {
+        section.classList.add('hidden');
+      });
+      const activeSection = document.getElementById(`section-${tabId}`);
+      if (activeSection) {
+        activeSection.classList.remove('hidden');
+      }
+
+      // Atualiza botões no desktop
+      const desktopNavBtns = document.querySelectorAll('#desktopNav .nav-item');
+      desktopNavBtns.forEach(btn => {
+        if (btn.getAttribute('onclick').includes(tabId)) {
+          btn.className = 'nav-item active flex items-center gap-3.5 w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-200 bg-[#f4ede2] text-[#2c3d35] shadow-sm font-semibold';
+        } else {
+          btn.className = 'nav-item flex items-center gap-3.5 w-full px-4 py-3 rounded-2xl font-medium text-sm transition-all duration-200 text-[#d8e7e0] hover:bg-[#385045] hover:text-white';
+        }
+      });
+
+      // Atualiza botões no mobile
+      const mobileNavBtns = document.querySelectorAll('.mobile-nav-btn');
+      mobileNavBtns.forEach(btn => {
+        if (btn.getAttribute('onclick').includes(tabId)) {
+          btn.className = 'mobile-nav-btn active flex flex-col items-center gap-0.5 text-xs text-[#f4ede2] font-semibold';
+        } else {
+          btn.className = 'mobile-nav-btn flex flex-col items-center gap-0.5 text-xs text-[#a9c5b8] hover:text-[#f4ede2]';
+        }
+      });
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /* RENDERIZAÇÃO DOS AVATARES NO DASHBOARD */
+    function renderResidentsAvatars() {
+      const grid = document.getElementById('residentAvatarsGrid');
+      grid.innerHTML = CHARACTERS_DATA.slice(0, 6).map(char => `
+        <div onclick="openCharacterModal('${char.id}')" class="group cursor-pointer bg-latte p-3 rounded-2xl border border-cafe-200 text-center hover:border-brass hover:shadow-md transition-all">
+          <div class="w-14 h-14 mx-auto rounded-full bg-[#f3ece1] border-2 border-cafe-300 flex items-center justify-center text-2xl group-hover:scale-105 transition-transform mb-2">
+            ${char.elementIcon}
+          </div>
+          <p class="font-serif font-bold text-xs text-cafe-900 group-hover:text-fontaine-primary transition-colors">${char.name}</p>
+          <span class="text-[10px] text-cafe-500 font-medium">${char.role}</span>
+        </div>
+      `).join('');
+    }
+
+    /* FILTROS E BUSCA DE BUILDS */
+    function setupSearchListener() {
+      const searchInput = document.getElementById('characterSearchInput');
+      searchInput.addEventListener('input', (e) => {
+        currentSearchTerm = e.target.value.toLowerCase().trim();
+        renderBuildsGrid();
+      });
+    }
+
+    function filterElement(element) {
+      currentElementFilter = element;
+      document.querySelectorAll('.elem-btn').forEach(btn => {
+        btn.classList.remove('bg-cafe-800', 'text-white');
+        btn.classList.add('bg-cafe-100', 'text-cafe-700');
+      });
+      event.target.classList.add('bg-cafe-800', 'text-white');
+      event.target.classList.remove('bg-cafe-100', 'text-cafe-700');
+      renderBuildsGrid();
+    }
+
+    function filterRole(role) {
+      currentRoleFilter = role;
+      document.querySelectorAll('.role-btn').forEach(btn => {
+        btn.classList.remove('bg-cafe-700', 'text-white');
+        btn.classList.add('bg-cafe-100', 'text-cafe-700');
+      });
+      event.target.classList.add('bg-cafe-700', 'text-white');
+      event.target.classList.remove('bg-cafe-100', 'text-cafe-700');
+      renderBuildsGrid();
+    }
+
+    function renderBuildsGrid() {
+      const grid = document.getElementById('buildsGrid');
+      const counter = document.getElementById('characterCountBadge');
+
+      const filtered = CHARACTERS_DATA.filter(char => {
+        const matchesElement = currentElementFilter === 'ALL' || char.element === currentElementFilter;
+        const matchesRole = currentRoleFilter === 'ALL' || char.role === currentRoleFilter;
+        const matchesSearch = char.name.toLowerCase().includes(currentSearchTerm) || 
+                              char.beverage.toLowerCase().includes(currentSearchTerm) ||
+                              char.artifacts.set.toLowerCase().includes(currentSearchTerm);
+        return matchesElement && matchesRole && matchesSearch;
+      });
+
+      counter.textContent = filtered.length;
+
+      if (filtered.length === 0) {
+        grid.innerHTML = `
+          <div class="col-span-full py-12 text-center bg-latte rounded-3xl border border-dashed border-cafe-300">
+            <i class="ph-duotone ph-coffee text-4xl text-cafe-400 mb-2"></i>
+            <p class="font-serif font-bold text-cafe-800">Nenhuma receita encontrada</p>
+            <p class="text-xs text-cafe-500 mt-1">Tente buscar por outro nome de personagem ou resetar os filtros.</p>
+          </div>
+        `;
+        return;
+      }
+
+      grid.innerHTML = filtered.map(char => `
+        <div class="bg-[#fdfbf7] rounded-3xl p-5 border border-[#e4d7c5] shadow-cozy hover:shadow-cozy-lg hover:border-brass/70 transition-all flex flex-col justify-between group">
+          <div>
+            <div class="flex items-start justify-between gap-2 mb-3">
+              <div class="flex items-center gap-3">
+                <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-cafe-100 to-amber-50 border border-cafe-300 flex items-center justify-center text-2xl shadow-inner group-hover:scale-105 transition-transform">
+                  ${char.elementIcon}
+                </div>
+                <div>
+                  <h4 class="font-serif font-bold text-cafe-900 text-lg leading-tight">${char.name}</h4>
+                  <p class="text-xs text-fontaine-primary font-serif italic">${char.beverage}</p>
+                </div>
+              </div>
+              <span class="text-xs font-bold px-2.5 py-0.5 rounded-full ${getElementBadgeColor(char.element)}">
+                ${char.element}
+              </span>
+            </div>
+
+            <p class="text-xs text-cafe-600 line-clamp-2 mb-3.5 leading-relaxed">${char.description}</p>
+
+            <div class="bg-latte rounded-2xl p-3 border border-cafe-200 text-xs space-y-1.5 mb-4">
+              <div class="flex justify-between items-center">
+                <span class="text-cafe-500 font-medium">Função:</span>
+                <span class="font-bold text-cafe-800">${char.role}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-cafe-500 font-medium">Artefatos:</span>
+                <span class="font-semibold text-cafe-800 truncate max-w-[170px]" title="${char.artifacts.set}">${char.artifacts.set}</span>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-cafe-500 font-medium">Melhor Arma:</span>
+                <span class="font-semibold text-amber-800 truncate max-w-[170px]" title="${char.weapons.bis}">${char.weapons.bis}</span>
+              </div>
+            </div>
+          </div>
+
+          <button onclick="openCharacterModal('${char.id}')" class="w-full py-2.5 rounded-xl bg-cafe-800 group-hover:bg-fontaine-primary text-white font-semibold text-xs transition-colors flex items-center justify-center gap-2 shadow-sm">
+            <i class="ph-bold ph-book-open"></i> Abrir Ficha de Combate
+          </button>
+        </div>
+      `).join('');
+    }
+
+    function getElementBadgeColor(element) {
+      switch(element) {
+        case 'Hydro': return 'bg-blue-100 text-blue-800 border border-blue-200';
+        case 'Pyro': return 'bg-red-100 text-red-800 border border-red-200';
+        case 'Electro': return 'bg-purple-100 text-purple-800 border border-purple-200';
+        case 'Geo': return 'bg-amber-100 text-amber-800 border border-amber-200';
+        case 'Cryo': return 'bg-cyan-100 text-cyan-800 border border-cyan-200';
+        case 'Dendro': return 'bg-emerald-100 text-emerald-800 border border-emerald-200';
+        case 'Anemo': return 'bg-teal-100 text-teal-800 border border-teal-200';
+        default: return 'bg-gray-100 text-gray-800';
+      }
+    }
+
+    /* MODAL DE PERSONAGENS */
+    function openCharacterModal(charId) {
+      const char = CHARACTERS_DATA.find(c => c.id === charId);
+      if (!char) return;
+
+      document.getElementById('modalCharName').textContent = char.name;
+      document.getElementById('modalCharEmoji').textContent = char.elementIcon;
+      document.getElementById('modalCharElement').textContent = `${char.element} • ${char.stars} Estrelas`;
+      document.getElementById('modalCharBeverage').textContent = `"${char.beverage}"`;
+      document.getElementById('modalCharRole').textContent = `${char.title} • ${char.role}`;
+
+      // Armas
+      const weaponsContainer = document.getElementById('modalWeaponsList');
+      weaponsContainer.innerHTML = `
+        <div class="bg-latte p-2.5 rounded-xl border border-cafe-200">
+          <span class="text-[10px] font-bold text-amber-600 block uppercase">Melhor Escolha (5★)</span>
+          <span class="text-xs font-semibold text-cafe-900">${char.weapons.bis}</span>
+        </div>
+        <div class="bg-latte p-2.5 rounded-xl border border-cafe-200">
+          <span class="text-[10px] font-bold text-purple-700 block uppercase">Opção 4★ Gacha/Passe</span>
+          <span class="text-xs font-semibold text-cafe-900">${char.weapons.fourStar}</span>
+        </div>
+        <div class="bg-latte p-2.5 rounded-xl border border-cafe-200">
+          <span class="text-[10px] font-bold text-emerald-700 block uppercase">F2P / Forjável</span>
+          <span class="text-xs font-semibold text-cafe-900">${char.weapons.f2p}</span>
+        </div>
+      `;
+
+      // Artefatos
+      document.getElementById('modalArtifactSet').textContent = char.artifacts.set;
+      document.getElementById('modalSandsStat').textContent = char.artifacts.sands;
+      document.getElementById('modalGobletStat').textContent = char.artifacts.goblet;
+      document.getElementById('modalCircletStat').textContent = char.artifacts.circlet;
+      document.getElementById('modalSubstats').textContent = char.artifacts.substats;
+
+      // Talentos
+      document.getElementById('modalTalentsPriority').textContent = char.talents;
+
+      // Equipes
+      const teamsContainer = document.getElementById('modalTeamSynergy');
+      teamsContainer.innerHTML = char.teams.map(teamMember => `
+        <span class="px-3 py-1 bg-latte border border-cafe-200 text-cafe-800 rounded-xl text-xs font-semibold flex items-center gap-1 shadow-sm">
+          ☕ ${teamMember}
+        </span>
+      `).join('');
+
+      document.getElementById('characterModal').classList.remove('hidden');
+    }
+
+    function closeCharacterModal() {
+      document.getElementById('characterModal').classList.add('hidden');
+    }
+
+    /* SELEÇÃO DO DIA DA SEMANA E DOMÍNIOS */
+    function selectDay(dayIndex) {
+      selectedDayOfWeek = dayIndex;
+      const data = DOMAINS_SCHEDULE[dayIndex];
+
+      // Atualiza botões
+      const dayButtons = document.querySelectorAll('.day-btn');
+      const dayOrder = [1, 2, 3, 4, 5, 6, 0];
+      dayButtons.forEach((btn, idx) => {
+        if (dayOrder[idx] === dayIndex) {
+          btn.className = 'day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all bg-fontaine-primary text-white border-fontaine-primary shadow-sm';
+        } else {
+          btn.className = 'day-btn px-3 py-1.5 rounded-xl text-xs font-bold border transition-all bg-latte text-cafe-700 border-cafe-200 hover:bg-cafe-100';
+        }
+      });
+
+      // Renderiza container da página de domínios
+      const container = document.getElementById('domainsDisplayContainer');
+      container.innerHTML = `
+        <div class="bg-latte p-5 rounded-2xl border border-cafe-200 space-y-3">
+          <div class="flex items-center gap-2 text-fontaine-primary">
+            <i class="ph-fill ph-book-open text-xl"></i>
+            <h4 class="font-serif font-bold text-cafe-900 text-base">Livros de Talento de Fontaine</h4>
+          </div>
+          <p class="text-sm font-semibold text-cafe-800 bg-[#fdfbf7] p-3 rounded-xl border border-cafe-200">
+            ${data.fontaineTalents}
+          </p>
+          <div class="text-xs text-cafe-500">
+            <strong>Domínio:</strong> Glória Pálida Esquecida (Court of Fontaine)
+          </div>
+        </div>
+
+        <div class="bg-latte p-5 rounded-2xl border border-cafe-200 space-y-3">
+          <div class="flex items-center gap-2 text-amber-700">
+            <i class="ph-fill ph-sword text-xl"></i>
+            <h4 class="font-serif font-bold text-cafe-900 text-base">Materiais de Armas de Fontaine</h4>
+          </div>
+          <p class="text-sm font-semibold text-cafe-800 bg-[#fdfbf7] p-3 rounded-xl border border-cafe-200">
+            ${data.fontaineWeapons}
+          </p>
+          <div class="text-xs text-cafe-500">
+            <strong>Domínio:</strong> Ecos das Marés Profundas
+          </div>
+        </div>
+
+        <div class="col-span-full bg-latte p-4 rounded-2xl border border-cafe-200 text-xs">
+          <span class="font-bold text-cafe-700 block mb-1">Outras Nações Abertas (${data.day}):</span>
+          <p class="text-cafe-600 leading-relaxed">${data.otherRegions}</p>
+        </div>
+      `;
+
+      // Atualiza também o widget resumido no Dashboard
+      const dashPreview = document.getElementById('dashboardDomainPreview');
+      const todayBadge = document.getElementById('todayDayNameBadge');
+      if (todayBadge) todayBadge.textContent = data.day.split('-')[0];
+      if (dashPreview) {
+        dashPreview.innerHTML = `
+          <div class="bg-latte p-2.5 rounded-xl border border-cafe-200 text-xs">
+            <span class="text-fontaine-primary font-bold block mb-0.5">Livros:</span>
+            <span class="text-cafe-800 font-medium line-clamp-1">${data.fontaineTalents}</span>
+          </div>
+          <div class="bg-latte p-2.5 rounded-xl border border-cafe-200 text-xs">
+            <span class="text-amber-700 font-bold block mb-0.5">Armas:</span>
+            <span class="text-cafe-800 font-medium line-clamp-1">${data.fontaineWeapons}</span>
+          </div>
+        `;
+      }
+    }
+
+    /* CALCULADORA DE RESINA */
+    function initResinClock() {
+      updateResinCalculator(120);
+    }
+
+    function setResinQuick(val) {
+      document.getElementById('resinInput').value = val;
+      updateResinCalculator(val);
+    }
+
+    function updateResinCalculator(currentResin) {
+      currentResin = parseInt(currentResin, 10);
+      document.getElementById('resinInputDisplay').textContent = `${currentResin} / 200`;
+      document.getElementById('headerResinDisplay').textContent = `${currentResin} / 200`;
+
+      const missing = Math.max(0, 200 - currentResin);
+      const minutesToFull = missing * 8;
+      const hours = Math.floor(minutesToFull / 60);
+      const mins = minutesToFull % 60;
+
+      const timeToFullEl = document.getElementById('resinTimeToFull');
+      const fullTimestampEl = document.getElementById('resinFullTimestamp');
+      const condensedEl = document.getElementById('resinCanCraftCondensed');
+      const domainRunsEl = document.getElementById('resinDomainRuns');
+
+      if (missing === 0) {
+        timeToFullEl.textContent = 'Resina Cheia!';
+        fullTimestampEl.textContent = 'Gaste agora para não desperdiçar!';
+      } else {
+        timeToFullEl.textContent = `${hours}h ${mins}m`;
+        const completionDate = new Date(Date.now() + minutesToFull * 60000);
+        fullTimestampEl.textContent = `Cheia às ${completionDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+      }
+
+      condensedEl.textContent = `${Math.floor(currentResin / 40)} Frascos`;
+      domainRunsEl.textContent = `${Math.floor(currentResin / 20)} Vezes`;
+    }
+
+    /* RELÓGIO DE TEYVAT */
+    function updateTeyvatClock() {
+      const now = new Date();
+      document.getElementById('teyvatClock').textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+
+    /* NOTEPAD / GERENCIADOR DE TAREFAS (COM LOCALSTORAGE) */
+    const STORAGE_KEY = 'cafeteria_fontaine_tasks';
+    let tasksList = [];
+
+    const DEFAULT_TASKS = [
+      { id: 1, text: 'Gastar 160 de Resina Diária', category: 'Geral', done: false },
+      { id: 2, text: 'Coletar 4 Comissões da Guilda dos Aventureiros', category: 'Geral', done: true },
+      { id: 3, text: 'Farmar Livros de Justiça para a Furina', category: 'Farm', done: false },
+      { id: 4, text: 'Comprar receitas novas de café no Hotel Debord', category: 'Geral', done: false }
+    ];
+
+    function loadTasks() {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        try {
+          tasksList = JSON.parse(saved);
+        } catch(e) {
+          tasksList = DEFAULT_TASKS;
+        }
+      } else {
+        tasksList = DEFAULT_TASKS;
+        saveTasksToStorage();
+      }
+      renderTasks();
+    }
+
+    function saveTasksToStorage() {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tasksList));
+    }
+
+    function addTask(e) {
+      e.preventDefault();
+      const input = document.getElementById('taskInput');
+      const category = document.getElementById('taskCategorySelect').value;
+      const text = input.value.trim();
+
+      if (!text) return;
+
+      const newTask = {
+        id: Date.now(),
+        text: text,
+        category: category,
+        done: false
+      };
+
+      tasksList.unshift(newTask);
+      saveTasksToStorage();
+      input.value = '';
+      renderTasks();
+    }
+
+    function toggleTask(id) {
+      tasksList = tasksList.map(t => {
+        if (t.id === id) return { ...t, done: !t.done };
+        return t;
+      });
+      saveTasksToStorage();
+      renderTasks();
+    }
+
+    function deleteTask(id) {
+      tasksList = tasksList.filter(t => t.id !== id);
+      saveTasksToStorage();
+      renderTasks();
+    }
+
+    function clearCompletedTasks() {
+      tasksList = tasksList.filter(t => !t.done);
+      saveTasksToStorage();
+      renderTasks();
+    }
+
+    function renderTasks() {
+      const container = document.getElementById('taskListContainer');
+      const quickWidget = document.getElementById('quickTaskWidgetList');
+      const quickCount = document.getElementById('quickTaskCount');
+
+      const completed = tasksList.filter(t => t.done).length;
+      if (quickCount) quickCount.textContent = `${completed}/${tasksList.length} Feitas`;
+
+      if (tasksList.length === 0) {
+        container.innerHTML = `
+          <div class="py-10 text-center text-cafe-400 bg-latte rounded-2xl border border-dashed border-cafe-300 text-xs">
+            Nenhuma anotação ativa. Adicione uma meta acima!
+          </div>
+        `;
+      } else {
+        container.innerHTML = tasksList.map(task => `
+          <div class="flex items-center justify-between p-3.5 rounded-2xl border ${task.done ? 'bg-[#ede5d8]/40 border-cafe-200 opacity-60' : 'bg-latte border-cafe-200'} transition-all">
+            <div class="flex items-center gap-3 flex-1">
+              <button onclick="toggleTask(${task.id})" class="w-6 h-6 rounded-lg border ${task.done ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-cafe-400 bg-white'} flex items-center justify-center transition-colors">
+                ${task.done ? '<i class="ph-bold ph-check text-xs"></i>' : ''}
+              </button>
+              <div class="flex flex-col">
+                <span class="text-xs sm:text-sm font-semibold ${task.done ? 'line-through text-cafe-500' : 'text-cafe-900'}">${task.text}</span>
+                <span class="text-[10px] text-cafe-500 font-medium">${task.category}</span>
+              </div>
+            </div>
+
+            <button onclick="deleteTask(${task.id})" class="text-cafe-400 hover:text-red-500 p-1.5 transition-colors">
+              <i class="ph-bold ph-trash text-base"></i>
+            </button>
+          </div>
+        `).join('');
+      }
+
+      // Renderiza as 3 primeiras tarefas no widget do Dashboard
+      if (quickWidget) {
+        const topTasks = tasksList.slice(0, 3);
+        if (topTasks.length === 0) {
+          quickWidget.innerHTML = `<p class="text-xs text-cafe-500 italic">Sem tarefas hoje!</p>`;
+        } else {
+          quickWidget.innerHTML = topTasks.map(t => `
+            <div onclick="toggleTask(${t.id})" class="cursor-pointer flex items-center gap-2.5 p-2 rounded-xl bg-latte border border-cafe-200 text-xs">
+              <div class="w-4 h-4 rounded border flex items-center justify-center ${t.done ? 'bg-emerald-600 border-emerald-600 text-white' : 'border-cafe-400'}">
+                ${t.done ? '<i class="ph-bold ph-check text-[10px]"></i>' : ''}
+              </div>
+              <span class="truncate ${t.done ? 'line-through text-cafe-400' : 'text-cafe-800 font-medium'}">${t.text}</span>
+            </div>
+          `).join('');
+        }
+      }
+    }
+  </script>
+</body>
+</html>

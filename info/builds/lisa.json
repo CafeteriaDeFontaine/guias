@@ -1,0 +1,70 @@
+{
+  "id": "lisa",
+  "name": "Lisa",
+  "rarity": 4,
+  "element": "electro",
+  "weaponType": "catalisador",
+  "avatar": "https://images.alphacoders.com/118/thumb-1920-1188544.png",
+  "builds": [
+    {
+      "buildName": "Sub-DPS / Suporte (Agravamento / Taser)",
+      "role": "Sub-DPS / Suporte",
+      "talentPriority": "Q > E > Normal",
+      "statsAim": {
+        "ATQ": "1.400+",
+        "Taxa / Dano": "60% / 120%",
+        "Recarga": "180% - 200%",
+        "Proficiência": "150+"
+      },
+      "weapons": [
+        { "name": "Memórias de Sacrifícios (4★)", "note": "Melhor opção para recarga e reset de tempo.", "bis": true },
+        { "name": "Atlas dos Mares (4★)", "note": "Opção F2P forjável com proficiência.", "bis": false },
+        { "name": "Protótipo Âmbar (4★)", "note": "Gera energia e cura para toda a equipe.", "bis": false }
+      ],
+      "artifactSets": [
+        { "name": "4x Selo da Insolação", "note": "Aumenta o dano do Supremo baseado na Recarga de Energia." },
+        { "name": "4x Trupe Itinerante", "note": "Alternativa para dano em reações de catalisação." }
+      ],
+      "mainStats": {
+        "sands": "Recarga de Energia ou ATQ%",
+        "goblet": "Bônus de Dano Electro",
+        "circlet": "Taxa Crítica ou Dano Crítico"
+      },
+      "subStatsPriority": "Recarga de Energia > Taxa / Dano Crítico > ATQ% > Proficiência",
+      "teams": [
+        { "name": "Eletrocarregado Taser", "members": ["Lisa", "Xingqiu", "Beidou", "Fischl"] },
+        { "name": "Agravamento (Quicken)", "members": ["Lisa", "Nahida", "Fischl", "Zhongli"] }
+      ],
+      "notes": "Foque em manter o Supremo ativo a cada rotação para aproveitar o corte de 15% de DEF do adversário."
+    },
+    {
+      "buildName": "DPS Principal (Campo)",
+      "role": "Main DPS",
+      "talentPriority": "E > Q > Normal",
+      "statsAim": {
+        "ATQ": "1.800+",
+        "Taxa / Dano": "70% / 150%",
+        "Recarga": "130% - 140%",
+        "Proficiência": "200+"
+      },
+      "weapons": [
+        { "name": "Oração Perdida aos Ventos Sagrados (5★)", "note": "BiS para dano consistente em campo.", "bis": true },
+        { "name": "Sinfonia dos Indolentes (4★)", "note": "Excelente taxa de dano crítico e buffs aleatórios.", "bis": false }
+      ],
+      "artifactSets": [
+        { "name": "4x Fúria do Trovão", "note": "Reduz o recarga da habilidade elemental (E) com reações." },
+        { "name": "2x Bônus Electro + 2x ATQ%", "note": "Combinação transitória equilibrada." }
+      ],
+      "mainStats": {
+        "sands": "ATQ% ou Proficiência Elemental",
+        "goblet": "Bônus de Dano Electro",
+        "circlet": "Taxa Crítica ou Dano Crítico"
+      },
+      "subStatsPriority": "Taxa / Dano Crítico > ATQ% > Proficiência > Recarga",
+      "teams": [
+        { "name": "Hiper-Agravamento", "members": ["Lisa", "Nahida", "Kazuha", "Kuki Shinobu"] }
+      ],
+      "notes": "Nesta variação, o foco é carregar os stacks de condutividade para desferir o Ataque Elemental (E) carregado com dano máximo."
+    }
+  ]
+}

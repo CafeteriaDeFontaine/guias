@@ -5,12 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Cafeteria de Fontaine — Guias &amp; Builds</title>
   
-  <!-- Fontes Google: Cinzel para tipografia clássica e Plus Jakarta Sans para leitura confortável -->
+  <!-- Fontes Google -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   
-  <!-- Ícones Phosphor Icons -->
+  <!-- Ícones Phosphor -->
   <script src="https://unpkg.com/@phosphor-icons/web"></script>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
@@ -20,27 +20,9 @@
       theme: {
         extend: {
           colors: {
-            espresso: {
-              950: '#120a06',
-              900: '#1b1009',
-              850: '#23150c',
-              800: '#2e1c11',
-              700: '#41291b',
-              600: '#5c3c28',
-              500: '#7c5339'
-            },
-            parchment: {
-              DEFAULT: '#f7efe1',
-              light: '#fdfbf7',
-              dark: '#ede0c8',
-              border: '#d5c3a5',
-              muted: '#725a49'
-            },
-            brass: {
-              DEFAULT: '#c59b4c',
-              light: '#e1be75',
-              dark: '#8b6833'
-            }
+            espresso: { 950: '#120a06', 900: '#1b1009', 850: '#23150c', 800: '#2e1c11', 700: '#41291b' },
+            parchment: { DEFAULT: '#f7efe1', light: '#fdfbf7', dark: '#ede0c8', border: '#d5c3a5', muted: '#725a49' },
+            brass: { DEFAULT: '#c59b4c', light: '#e1be75', dark: '#8b6833' }
           },
           fontFamily: {
             display: ['"Cinzel"', 'serif'],
@@ -62,42 +44,22 @@
       color: #f7ede2;
       min-height: 100vh;
     }
-
-    /* Scrollbar temática de café tostado e latão */
-    ::-webkit-scrollbar {
-      width: 8px;
-      height: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #1b1009;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: #7c5339;
-      border-radius: 9999px;
-      border: 1px solid #c59b4c;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #c59b4c;
-    }
-
-    /* Moldura ornamental estilo cardápio clássico */
-    .vintage-border {
-      position: relative;
-    }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: #1b1009; }
+    ::-webkit-scrollbar-thumb { background: #7c5339; border-radius: 9999px; border: 1px solid #c59b4c; }
+    ::-webkit-scrollbar-thumb:hover { background: #c59b4c; }
+    
+    .vintage-border { position: relative; }
     .vintage-border::before {
-      content: "";
-      position: absolute;
-      inset: 4px;
-      border: 1px solid rgba(139, 104, 51, 0.3);
-      border-radius: 14px;
-      pointer-events: none;
+      content: ""; position: absolute; inset: 4px;
+      border: 1px solid rgba(139, 104, 51, 0.3); border-radius: 14px; pointer-events: none;
     }
   </style>
 </head>
 
 <body class="font-sans antialiased flex flex-col min-h-screen">
 
-  <!-- CABEÇALHO ELEGANTE DE CAFETERIA -->
+  <!-- CABEÇALHO -->
   <header class="sticky top-0 z-40 bg-espresso-900/95 backdrop-blur-md border-b-2 border-brass-dark shadow-2xl px-4 py-4 md:py-5">
     <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
       <div class="flex items-center gap-3.5">
@@ -112,15 +74,12 @@
         </div>
       </div>
       
-      <!-- Contador de Guias e Link GitHub -->
       <div class="flex items-center gap-3">
         <span class="text-xs bg-espresso-800 border border-brass-dark/70 text-brass-light px-3 py-1.5 rounded-full font-semibold">
           <span id="totalGuidesCount">0</span> Guias Catalogados
         </span>
-        <a href="https://github.com/CafeteriaDeFontaine/guias" target="_blank" rel="noopener noreferrer" 
-           class="text-xs bg-espresso-850 hover:bg-espresso-800 border border-[#5a3e2b] text-[#dfc7b6] hover:text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors">
-          <i class="ph-bold ph-github-logo text-sm"></i>
-          <span>GitHub</span>
+        <a href="https://github.com/CafeteriaDeFontaine/guias" target="_blank" rel="noopener noreferrer" class="text-xs bg-espresso-850 hover:bg-espresso-800 border border-[#5a3e2b] text-[#dfc7b6] hover:text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors">
+          <i class="ph-bold ph-github-logo text-sm"></i> <span>GitHub</span>
         </a>
       </div>
     </div>
@@ -128,24 +87,20 @@
 
   <!-- PAINEL DE FILTROS & PESQUISA -->
   <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 space-y-6">
-
     <section class="bg-espresso-900/90 border border-brass-dark rounded-2xl p-4 md:p-5 shadow-2xl space-y-4">
       
-      <!-- Busca e Contador -->
       <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
         <div class="relative w-full sm:w-96">
           <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-brass"></i>
-          <input type="text" id="searchInput" placeholder="Pesquisar por nome ou função..." 
-                 class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-espresso-950 border border-[#523827] text-sm text-[#f6eedd] placeholder-[#8d705c] focus:outline-none focus:border-brass transition-all">
+          <input type="text" id="searchInput" placeholder="Pesquisar por nome ou função..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-espresso-950 border border-[#523827] text-sm text-[#f6eedd] placeholder-[#8d705c] focus:outline-none focus:border-brass transition-all">
         </div>
-        
         <div class="text-xs text-[#cfb6a3] flex items-center gap-2">
           <span>Exibindo: <strong id="visibleGuidesCount" class="text-brass-light font-bold">0</strong></span>
           <button onclick="resetFilters()" class="text-[11px] underline text-brass hover:text-brass-light cursor-pointer">Limpar Filtros</button>
         </div>
       </div>
 
-      <!-- Filtro por Elemento -->
+      <!-- Filtros de Elemento -->
       <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-[#3e291b]">
         <span class="text-xs font-bold uppercase tracking-wider text-brass-light flex items-center gap-1.5 mr-1 min-w-[80px]">
           <i class="ph-fill ph-drop-half-bottom"></i> Elemento:
@@ -162,7 +117,7 @@
         </div>
       </div>
 
-      <!-- Filtro por Tipo de Arma -->
+      <!-- Filtros de Arma -->
       <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-[#3e291b]">
         <span class="text-xs font-bold uppercase tracking-wider text-brass-light flex items-center gap-1.5 mr-1 min-w-[80px]">
           <i class="ph-fill ph-sword"></i> Arma:
@@ -176,30 +131,31 @@
           <button data-weapon="catalisador" class="weapon-btn px-3 py-1 rounded-lg text-xs font-medium bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">Catalisador</button>
         </div>
       </div>
-
     </section>
 
-    <!-- LISTA DE GUIAS RÁPIDOS VISUAIS -->
+    <!-- CONTAINER DA LISTA RÁPIDA -->
     <section class="space-y-3.5" id="guidesListContainer">
-      <!-- Injetado dinamicamente via JS -->
+      <div class="text-center p-10 text-brass-light flex flex-col items-center justify-center">
+        <i class="ph-duotone ph-spinner-gap animate-spin text-4xl mb-4"></i>
+        <span>Passando o café e carregando os guias...</span>
+      </div>
     </section>
-
   </main>
 
   <!-- MODAL DO GUIA COMPLETO -->
   <div id="fullGuideModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
     <div class="bg-parchment text-espresso-950 border-4 border-brass-dark rounded-3xl max-w-3xl w-full my-auto shadow-2xl overflow-hidden relative vintage-border max-h-[92vh] flex flex-col">
       
-      <!-- Topo do Modal -->
+      <!-- Topo Modal -->
       <div class="relative bg-gradient-to-r from-espresso-900 to-espresso-800 text-parchment p-5 border-b-2 border-brass-dark flex items-center justify-between shrink-0">
         <div class="flex items-center gap-4">
-          <div id="modalCharAvatarWrap" class="w-16 h-16 rounded-full border-2 border-brass bg-espresso-950 overflow-hidden shadow-md shrink-0 flex items-center justify-center text-3xl">
-            <!-- Avatar -->
+          <div class="w-16 h-16 rounded-full border-2 border-brass bg-espresso-950 overflow-hidden shadow-md shrink-0 flex items-center justify-center">
+            <img id="modalCharIcon" src="" alt="Icon" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/120x120/1e293b/38bdf8?text=?'">
           </div>
           <div>
             <div class="flex items-center gap-2.5">
               <h2 id="modalCharName" class="font-display font-bold text-2xl text-brass-light leading-none">Personagem</h2>
-              <span id="modalCharStars" class="text-amber-400 text-sm tracking-widest">★★★★★</span>
+              <span id="modalCharStars" class="text-amber-400 text-sm tracking-widest"></span>
             </div>
             <div class="flex items-center gap-2 mt-1.5 text-xs text-[#d8c3b0]">
               <span id="modalCharElementBadge" class="px-2 py-0.5 rounded-full font-bold uppercase text-[10px]">Elemento</span>
@@ -210,114 +166,90 @@
             </div>
           </div>
         </div>
-
         <button onclick="closeFullGuideModal()" class="w-9 h-9 rounded-full bg-espresso-850 hover:bg-red-900 text-brass-light hover:text-white border border-brass-dark flex items-center justify-center transition-colors">
           <i class="ph-bold ph-x text-lg"></i>
         </button>
       </div>
 
-      <!-- Abas de Alternância entre Múltiplas Builds -->
-      <div id="modalBuildTabsRow" class="bg-parchment-dark border-b border-parchment-border px-4 py-2 flex flex-wrap gap-2 shrink-0">
-        <!-- Botões de aba injetados dinamicamente quando há mais de 1 build -->
-      </div>
+      <!-- Abas de Builds Múltiplas -->
+      <div id="modalBuildTabsRow" class="bg-parchment-dark border-b border-parchment-border px-4 py-2 flex flex-wrap gap-2 shrink-0"></div>
 
-      <!-- Conteúdo Rolável da Build Ativa -->
+      <!-- Conteúdo Interno Rolável da Build -->
       <div class="p-4 sm:p-6 space-y-5 overflow-y-auto flex-1 text-espresso-950 text-xs sm:text-sm">
         
-        <!-- Visão Geral & Metas de Atributos (Nível 90) -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          
+          <!-- Metas de Status -->
           <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm">
             <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-2.5 flex items-center gap-2">
               <i class="ph-fill ph-chart-line-up text-brass-dark text-base"></i> Metas de Status (Nível 90)
             </h3>
-            <div class="grid grid-cols-2 gap-2 text-xs" id="modalStatsGrid">
-              <!-- Preenchido via script -->
-            </div>
+            <div class="grid grid-cols-2 gap-2 text-[11px]" id="modalStatsGrid"></div>
           </div>
-
+          <!-- Ordem de Talentos -->
           <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm flex flex-col justify-between">
             <div>
               <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-2.5 flex items-center gap-2">
                 <i class="ph-fill ph-arrow-fat-line-right text-brass-dark text-base"></i> Ordem de Talentos
               </h3>
-              <div id="modalTalentPriority" class="bg-parchment-dark p-3 rounded-xl border border-parchment-border font-bold text-espresso-900 text-center tracking-wide text-xs sm:text-sm">
-                <!-- E > Q > Normal -->
-              </div>
+              <div id="modalTalentPriority" class="bg-parchment-dark p-3 rounded-xl border border-parchment-border font-bold text-espresso-900 text-center tracking-wide text-xs"></div>
             </div>
-            <p class="text-[11px] text-parchment-muted mt-2 italic">Aprimore prioritariamente os talentos à esquerda para maximizar o rendimento nesta build.</p>
           </div>
-
         </div>
 
-        <!-- Armas Recomendadas (Quantidade Dinâmica) -->
+        <!-- Armas Recomendadas -->
         <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm">
           <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-3 flex items-center gap-2">
             <i class="ph-fill ph-sword text-brass-dark text-base"></i> Armas Recomendadas
           </h3>
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5" id="modalWeaponsList">
-            <!-- Armas preenchidas dinamicamente -->
-          </div>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5" id="modalWeaponsList"></div>
         </div>
 
-        <!-- Artefatos & Estatísticas Principais -->
+        <!-- Artefatos -->
         <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm space-y-3">
           <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 flex items-center gap-2">
             <i class="ph-fill ph-shield-chevron text-brass-dark text-base"></i> Artefatos &amp; Atributos
           </h3>
-
-          <div>
-            <span class="text-[11px] font-bold uppercase tracking-wider text-parchment-muted block mb-1">Conjuntos Indicados:</span>
-            <div id="modalArtifactSets" class="space-y-1.5">
-              <!-- Artefatos preenchidos dinamicamente -->
-            </div>
-          </div>
-
-          <!-- Peças Areia, Cálice e Coroa -->
+          <div id="modalArtifactSets" class="space-y-1.5"></div>
+          
           <div class="grid grid-cols-3 gap-2 pt-2 border-t border-parchment-border text-center">
             <div class="bg-parchment-dark/70 p-2.5 rounded-xl border border-parchment-border">
               <span class="text-[10px] uppercase font-bold text-parchment-muted block">Ampulheta</span>
-              <strong id="modalStatSands" class="text-xs text-espresso-900 block mt-0.5">ATQ% / Recarga</strong>
+              <strong id="modalStatSands" class="text-[11px] text-espresso-900 block mt-0.5"></strong>
             </div>
             <div class="bg-parchment-dark/70 p-2.5 rounded-xl border border-parchment-border">
               <span class="text-[10px] uppercase font-bold text-parchment-muted block">Cálice</span>
-              <strong id="modalStatGoblet" class="text-xs text-espresso-900 block mt-0.5">Dano Elemental</strong>
+              <strong id="modalStatGoblet" class="text-[11px] text-espresso-900 block mt-0.5"></strong>
             </div>
             <div class="bg-parchment-dark/70 p-2.5 rounded-xl border border-parchment-border">
               <span class="text-[10px] uppercase font-bold text-parchment-muted block">Tiara</span>
-              <strong id="modalStatCirclet" class="text-xs text-espresso-900 block mt-0.5">Taxa / Dano Crítico</strong>
+              <strong id="modalStatCirclet" class="text-[11px] text-espresso-900 block mt-0.5"></strong>
             </div>
           </div>
-
-          <div class="bg-parchment-dark/40 p-2.5 rounded-xl border border-parchment-border text-xs">
-            <span class="font-bold text-espresso-900">Prioridade de Subatributos: </span>
-            <span id="modalSubstatsPriority" class="text-parchment-muted font-medium">Recarga > Crítico > ATQ%</span>
+          <div class="bg-parchment-dark/40 p-2.5 rounded-xl border border-parchment-border text-[11px]">
+            <span class="font-bold text-espresso-900">Subatributos: </span>
+            <span id="modalSubstatsPriority" class="text-parchment-muted font-medium"></span>
           </div>
         </div>
 
-        <!-- Equipes Recomendadas (Quantidade Dinâmica) -->
+        <!-- Equipes -->
         <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm">
           <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-2.5 flex items-center gap-2">
             <i class="ph-fill ph-users-three text-brass-dark text-base"></i> Sinergia de Equipes
           </h3>
-          <div id="modalTeamsContainer" class="space-y-2.5">
-            <!-- Equipes preenchidas dinamicamente -->
-          </div>
+          <div id="modalTeamsContainer" class="space-y-2.5"></div>
         </div>
 
-        <!-- Dica de Combate & Rotação -->
+        <!-- Dicas -->
         <div class="bg-espresso-900 text-parchment rounded-2xl p-4 border border-brass-dark">
           <h3 class="font-display font-bold text-brass-light text-sm mb-1.5 flex items-center gap-2">
-            <i class="ph-fill ph-lightbulb-filament text-amber-300 text-base"></i> Dica de Combate &amp; Rotação
+            <i class="ph-fill ph-lightbulb-filament text-amber-300 text-base"></i> Dica de Combate
           </h3>
-          <p id="modalCombatTip" class="text-xs leading-relaxed text-[#eddccf]">
-            <!-- Preenchido via script -->
-          </p>
+          <p id="modalCombatTip" class="text-[11px] leading-relaxed text-[#eddccf]"></p>
         </div>
 
       </div>
 
-      <!-- Rodapé do Modal -->
+      <!-- Rodapé -->
       <div class="bg-parchment-dark px-5 py-3 border-t border-parchment-border flex justify-end shrink-0">
         <button onclick="closeFullGuideModal()" class="px-5 py-2 rounded-xl bg-espresso-900 hover:bg-espresso-950 text-brass-light text-xs font-bold transition-colors shadow">
           Fechar Guia
@@ -328,266 +260,69 @@
   </div>
 
   <script>
-    /**
-     * BANCO DE DADOS DE PERSONAGENS COM SUPORTE A MÚLTIPLAS BUILDS
-     * A estrutura permite ter 1 ou N builds por personagem.
-     * Pode ser expandida diretamente ou alimentada pela pasta builds/*.json.
-     */
-    const CHARACTERS_DATA = [
-      {
-        id: 'lisa',
-        name: 'Lisa',
-        rarity: 4,
-        element: 'electro',
-        weaponType: 'catalisador',
-        avatarText: '⚡',
-        builds: [
-          {
-            buildName: 'Sub-DPS / Suporte (Agravamento & Taser)',
-            role: 'Sub-DPS / Suporte',
-            talentPriority: 'Supremo (Q) > Habilidade (E) > Ataque Normal',
-            statsAim: [
-              { label: 'ATQ Total', val: '1.400 - 1.600' },
-              { label: 'Taxa Crítica', val: '60%+' },
-              { label: 'Dano Crítico', val: '120%+' },
-              { label: 'Recarga (ER)', val: '180% - 200%' }
-            ],
-            weapons: [
-              { name: 'Memórias de Sacrifícios (4★)', note: 'Melhor opção para recarga e reset da habilidade.', bis: true },
-              { name: 'Atlas dos Mares (4★)', note: 'Excelente opção da forja (F2P) com proficiência.', bis: false },
-              { name: 'Protótipo Âmbar (4★)', note: 'Gera energia para o time e cura os aliados no Supremo.', bis: false }
-            ],
-            artifactSets: [
-              { name: '4x Selo da Insolação (Insígnia do Destino)', note: 'Converte recarga em alto dano para o Supremo.' },
-              { name: '4x Trupe Itinerante', note: 'Alternativa viável focada em reações de catalisação.' }
-            ],
-            mainStats: {
-              sands: 'Recarga de Energia ou ATQ%',
-              goblet: 'Bônus de Dano Electro',
-              circlet: 'Taxa Crítica ou Dano Crítico',
-              substats: 'Recarga de Energia > Taxa / Dano Crítico > ATQ% > Proficiência'
-            },
-            teams: [
-              { name: 'Eletrocarregado (Taser)', members: ['Lisa', 'Xingqiu', 'Beidou', 'Fischl'] },
-              { name: 'Agravamento (Quicken)', members: ['Lisa', 'Nahida', 'Fischl', 'Zhongli'] }
-            ],
-            notes: 'O Supremo da Lisa reduz a DEF dos inimigos em 15% dentro de seu círculo. Use-o imediatamente antes de ativar os ataques do seu atacante primário.'
-          },
-          {
-            buildName: 'DPS Principal (Campo)',
-            role: 'Main DPS',
-            talentPriority: 'Habilidade (E) > Supremo (Q) > Ataque Normal',
-            statsAim: [
-              { label: 'ATQ Total', val: '1.800+' },
-              { label: 'Taxa Crítica', val: '70%+' },
-              { label: 'Dano Crítico', val: '150%+' },
-              { label: 'Recarga (ER)', val: '130% - 140%' }
-            ],
-            weapons: [
-              { name: 'Oração Perdida aos Ventos (5★)', note: 'BiS ofensivo com Taxa Crítica contínua.', bis: true },
-              { name: 'Sinfonia dos Indolentes (4★)', note: 'Altíssimo dano crítico e buffs rápidos.', bis: false }
-            ],
-            artifactSets: [
-              { name: '4x Fúria do Trovão', note: 'Reduz o tempo de recarga da Habilidade ao ativar reações.' },
-              { name: '2x Bônus Electro + 2x ATQ%', note: 'Conjunto misto consistente e fácil de balancear.' }
-            ],
-            mainStats: {
-              sands: 'ATQ% ou Proficiência Elemental',
-              goblet: 'Bônus de Dano Electro',
-              circlet: 'Taxa Crítica ou Dano Crítico',
-              substats: 'Taxa / Dano Crítico > ATQ% > Proficiência > Recarga'
-            },
-            teams: [
-              { name: 'Hiper-Agravamento', members: ['Lisa', 'Nahida', 'Kazuha', 'Kuki Shinobu'] }
-            ],
-            notes: 'Aplique 3 acúmulos condutivos nos alvos antes de segurar o Ataque Elemental para desferir o raio de potência máxima.'
-          }
-        ]
-      },
-      {
-        id: 'furina',
-        name: 'Furina',
-        rarity: 5,
-        element: 'hydro',
-        weaponType: 'espada',
-        avatarText: '💧',
-        builds: [
-          {
-            buildName: 'Sub-DPS / Buffer Universal',
-            role: 'Sub-DPS / Buffer',
-            talentPriority: 'Habilidade (E) = Supremo (Q) > Ataque Normal',
-            statsAim: [
-              { label: 'Vida Máxima (HP)', val: '38.000 - 42.000' },
-              { label: 'Taxa Crítica', val: '70%+' },
-              { label: 'Dano Crítico', val: '140% - 180%' },
-              { label: 'Recarga (ER)', val: '170% - 200%' }
-            ],
-            weapons: [
-              { name: 'Esplendor das Águas Silenciosas (5★)', note: 'Arma assinatura com dano massivo para a habilidade.', bis: true },
-              { name: 'Cano de Fleuve Cendre (4★)', note: 'Excelente e gratuita na pesca de Fontaine com Taxa e Recarga.', bis: false },
-              { name: 'Espada de Favonius (4★)', note: 'Garante rotações perfeitas para todo o grupo.', bis: false }
-            ],
-            artifactSets: [
-              { name: '4x Trupe Dourada (Golden Troupe)', note: 'Melhor conjunto absoluto; concede até 70% de dano bônus fora de campo.' }
-            ],
-            mainStats: {
-              sands: 'Vida% ou Recarga de Energia',
-              goblet: 'Vida% ou Bônus Hydro',
-              circlet: 'Taxa Crítica ou Dano Crítico',
-              substats: 'Recarga (até a meta) > Vida% > Taxa / Dano Crítico'
-            },
-            teams: [
-              { name: 'Hipercarregador Hydro', members: ['Neuvillette', 'Furina', 'Kazuha', 'Baizhu'] },
-              { name: 'Vaporização Premium', members: ['Hu Tao', 'Furina', 'Yelan', 'Xianyun'] }
-            ],
-            notes: 'Para obter o bônus máximo de Fanfarra no Supremo, utilize sempre um curador que regenere a vida de todo o grupo de uma vez só.'
-          }
-        ]
-      },
-      {
-        id: 'neuvillette',
-        name: 'Neuvillette',
-        rarity: 5,
-        element: 'hydro',
-        weaponType: 'catalisador',
-        avatarText: '🌊',
-        builds: [
-          {
-            buildName: 'DPS Principal (Ataque Carregado)',
-            role: 'Main DPS',
-            talentPriority: 'Ataque Normal (Carregado) > Supremo (Q) = Habilidade (E)',
-            statsAim: [
-              { label: 'Vida Máxima (HP)', val: '40.000+' },
-              { label: 'Taxa Crítica', val: '50% - 64% (Máx)' },
-              { label: 'Dano Crítico', val: '220%+' },
-              { label: 'Recarga (ER)', val: '120% - 130%' }
-            ],
-            weapons: [
-              { name: 'Rito do Fluxo Eterno (5★)', note: 'Arma assinatura colossal; buffa o raio contínuo e restaura energia.', bis: true },
-              { name: 'Protótipo Âmbar (4★)', note: 'Opção da forja com Vida% e regeneração de energia para a rotação.', bis: false },
-              { name: 'Sacrifício de Jade (4★)', note: 'Excelente arma do Passe de Batalha com alta Taxa Crítica e HP extra.', bis: false }
-            ],
-            artifactSets: [
-              { name: '4x Caçador das Sombras (Marechaussee)', note: 'Concede 36% de Taxa Crítica passiva com a flutuação contínua de Vida.' }
-            ],
-            mainStats: {
-              sands: 'Vida%',
-              goblet: 'Bônus Hydro ou Vida%',
-              circlet: 'Dano Crítico ou Vida%',
-              substats: 'Taxa Crítica (até 64%) > Dano Crítico > Vida% > Recarga'
-            },
-            teams: [
-              { name: 'Hiper-Hydro', members: ['Neuvillette', 'Furina', 'Kazuha', 'Zhongli'] },
-              { name: 'Eletrocarregado Taser', members: ['Neuvillette', 'Fischl', 'Kazuha', 'Baizhu'] }
-            ],
-            notes: 'Evite passar de 64% de Taxa Crítica na ficha, pois as 4 peças de Caçador das Sombras já adicionam 36% durante os ataques carregados, atingindo os 100% ideais.'
-          }
-        ]
-      },
-      {
-        id: 'navia',
-        name: 'Navia',
-        rarity: 5,
-        element: 'geo',
-        weaponType: 'espadão',
-        avatarText: '🪨',
-        builds: [
-          {
-            buildName: 'DPS Principal (Tiros de Cristalização)',
-            role: 'Main DPS',
-            talentPriority: 'Habilidade (E) > Ataque Normal > Supremo (Q)',
-            statsAim: [
-              { label: 'Ataque Total', val: '2.200 - 2.500' },
-              { label: 'Taxa Crítica', val: '70%+' },
-              { label: 'Dano Crítico', val: '150% - 190%' },
-              { label: 'Recarga (ER)', val: '120% - 130%' }
-            ],
-            weapons: [
-              { name: 'Veredito (5★)', note: 'Arma assinatura que amplia o dano de Habilidade ao coletar estilhaços.', bis: true },
-              { name: 'Sombra da Serpente (4★)', note: 'Excelente arma do Passe que bonifica todo o dano causado.', bis: false },
-              { name: 'Mega Ultra Espadão Mágico (4★)', note: 'Ótima alternativa F2P com Recarga de Energia e Ataque%.', bis: false }
-            ],
-            artifactSets: [
-              { name: '4x Ecos da Floresta Noturna', note: 'Maximiza o dano de tiros de guarda-chuva sob o efeito de escudos de cristalização.' }
-            ],
-            mainStats: {
-              sands: 'ATQ%',
-              goblet: 'Bônus Geo',
-              circlet: 'Taxa Crítica ou Dano Crítico',
-              substats: 'Taxa / Dano Crítico > ATQ% > Recarga de Energia'
-            },
-            teams: [
-              { name: 'Cristalização Dupla Geo', members: ['Navia', 'Zhongli', 'Bennett', 'Xiangling'] },
-              { name: 'Dupla Hydro & Geo', members: ['Navia', 'Chiori', 'Furina', 'Bennett'] }
-            ],
-            notes: 'Aguarde juntar 6 estilhaços de cristalização antes de disparar o guarda-chuva para desferir 11 tiros com o multiplicador máximo de dano.'
-          }
-        ]
-      },
-      {
-        id: 'arlecchino',
-        name: 'Arlecchino',
-        rarity: 5,
-        element: 'pyro',
-        weaponType: 'lança',
-        avatarText: '🔥',
-        builds: [
-          {
-            buildName: 'DPS Principal (Contrato de Vida)',
-            role: 'Main DPS',
-            talentPriority: 'Ataque Normal > Habilidade (E) = Supremo (Q)',
-            statsAim: [
-              { label: 'Ataque Total', val: '2.000 - 2.400' },
-              { label: 'Taxa Crítica', val: '75%+' },
-              { label: 'Dano Crítico', val: '160% - 200%' },
-              { label: 'Proficiência (EM)', val: '80 - 150 (Vape)' }
-            ],
-            weapons: [
-              { name: 'Semblante da Lua Carmesim (5★)', note: 'Gera Contrato de Vida extra e eleva o dano pyro dos golpes normais.', bis: true },
-              { name: 'Pederneira da Montanha (4★)', note: 'Excelente lança do Passe com taxa e dano de ataques normais.', bis: false },
-              { name: 'Borla Branca (3★ F2P)', note: 'Arma gratuita de baús de Liyue que concede até 48% de dano nos normais no R5.', bis: false }
-            ],
-            artifactSets: [
-              { name: '4x Fragmento da Harmonia Fantástica', note: 'Conjunto ideal que concede até 54% de bônus de dano contínuo com Contrato de Vida.' }
-            ],
-            mainStats: {
-              sands: 'ATQ% ou Proficiência Elemental',
-              goblet: 'Bônus Pyro',
-              circlet: 'Taxa Crítica ou Dano Crítico',
-              substats: 'Taxa / Dano Crítico > ATQ% > Proficiência'
-            },
-            teams: [
-              { name: 'Vaporização Tradicional', members: ['Arlecchino', 'Yelan', 'Bennett', 'Kazuha'] },
-              { name: 'Sobrecarga com Chevreuse', members: ['Arlecchino', 'Chevreuse', 'Fischl', 'Bennett'] }
-            ],
-            notes: 'Arlecchino só recebe cura do seu próprio Supremo durante o combate. Mantenha os inimigos marcados pela Habilidade antes de absorvê-los com o ataque carregado.'
-          }
-        ]
-      }
+    // ==========================================
+    // 1. LISTA DE PERSONAGENS CADASTRADOS
+    // Para adicionar um novo personagem, crie o arquivo JSON na pasta "builds/"
+    // e adicione o ID (nome do arquivo sem o .json) nesta lista abaixo:
+    // ==========================================
+    const guiasCadastrados = [
+      'vesna'
+      // 'furina',
+      // 'lisa'
     ];
+    // ==========================================
 
-    // Estado Global
+    let CHARACTERS_DATA = [];
     let activeCharId = null;
     let activeBuildIndex = 0;
     let filterSearchText = '';
     let filterActiveElement = 'ALL';
     let filterActiveWeapon = 'ALL';
 
-    // Elementos DOM
     const guidesListContainer = document.getElementById('guidesListContainer');
-    const searchInput = document.getElementById('searchInput');
     const totalGuidesCountEl = document.getElementById('totalGuidesCount');
     const visibleGuidesCountEl = document.getElementById('visibleGuidesCount');
-    const fullGuideModal = document.getElementById('fullGuideModal');
 
+    // Inicialização
     document.addEventListener('DOMContentLoaded', () => {
-      totalGuidesCountEl.textContent = CHARACTERS_DATA.length;
       setupFilters();
-      renderGuidesList();
+      loadAllGuides();
     });
 
+    // Buscar os arquivos JSON dinamicamente
+    async function loadAllGuides() {
+      try {
+        const fetchPromises = guiasCadastrados.map(id => 
+          fetch(`builds/${id}.json`)
+            .then(res => {
+              if (!res.ok) throw new Error(`Arquivo não encontrado: ${id}.json`);
+              return res.json();
+            })
+            .catch(err => {
+              console.error(err);
+              return null; // Retorna nulo se falhar um específico para não quebrar a tela inteira
+            })
+        );
+        
+        const results = await Promise.all(fetchPromises);
+        // Filtrar os nulos (erros de fetch)
+        CHARACTERS_DATA = results.filter(char => char !== null);
+        
+        totalGuidesCountEl.textContent = CHARACTERS_DATA.length;
+        renderGuidesList();
+      } catch (error) {
+        console.error("Erro fatal ao carregar:", error);
+        guidesListContainer.innerHTML = `
+          <div class="bg-red-900/40 border border-red-500 rounded-2xl p-10 text-center text-red-200">
+            <h4 class="font-bold text-lg mb-2">Erro ao carregar os dados!</h4>
+            <p class="text-xs">Verifique se você está rodando isso via Servidor Local (ou GitHub Pages) e se a pasta <strong>builds/</strong> existe com os arquivos JSON.</p>
+          </div>
+        `;
+      }
+    }
+
     function setupFilters() {
-      searchInput.addEventListener('input', (e) => {
+      document.getElementById('searchInput').addEventListener('input', (e) => {
         filterSearchText = e.target.value.toLowerCase().trim();
         renderGuidesList();
       });
@@ -623,7 +358,7 @@
       filterSearchText = '';
       filterActiveElement = 'ALL';
       filterActiveWeapon = 'ALL';
-      searchInput.value = '';
+      document.getElementById('searchInput').value = '';
 
       document.querySelectorAll('#elementFilterButtons .elem-btn').forEach((b, i) => {
         b.className = i === 0 
@@ -665,28 +400,28 @@
       }
 
       guidesListContainer.innerHTML = filtered.map(char => {
-        const elementClass = getElementBadgeClass(char.element);
         const primaryBuild = char.builds[0] || {};
         const buildCount = char.builds.length;
+        const iconPath = `icon/${char.id}.png`; // Puxando foto da pasta icon/
 
         return `
           <article class="bg-parchment text-espresso-950 border-2 border-parchment-border rounded-2xl shadow-xl overflow-hidden vintage-border hover:shadow-2xl transition-all">
             <div class="p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
               
-              <!-- Identidade do Personagem -->
+              <!-- Identidade -->
               <div class="flex items-center gap-3.5 md:w-64 md:border-r border-dashed border-parchment-border md:pr-4 shrink-0">
-                <div class="w-14 h-14 rounded-full border-2 border-brass-dark bg-espresso-900 flex items-center justify-center text-2xl shadow-inner shrink-0">
-                  ${char.avatarText}
+                <div class="w-14 h-14 rounded-full border-2 border-brass-dark bg-espresso-900 overflow-hidden shadow-inner shrink-0">
+                  <img src="${iconPath}" alt="${char.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/120x120/1e293b/38bdf8?text=${char.name.charAt(0)}'">
                 </div>
                 <div>
                   <h3 class="font-display font-bold text-xl text-espresso-950 leading-tight">${char.name}</h3>
                   <div class="flex items-center gap-1.5 mt-1 text-[11px] font-semibold">
-                    <span class="px-2 py-0.5 rounded-full ${elementClass} font-bold uppercase text-[10px]">${char.element}</span>
+                    <span class="px-2 py-0.5 rounded-full ${getElementBadgeClass(char.element)} font-bold uppercase text-[10px]">${char.element}</span>
                     <span class="text-parchment-muted capitalize">• ${char.weaponType}</span>
                   </div>
                   <div class="flex items-center gap-1.5 mt-0.5">
                     <span class="text-[11px] text-[#825e45] font-bold">${primaryBuild.role || 'Geral'}</span>
-                    ${buildCount > 1 ? `<span class="text-[10px] bg-parchment-dark border border-parchment-border px-1.5 py-0.2 rounded font-semibold text-espresso-900">+${buildCount - 1} build</span>` : ''}
+                    ${buildCount > 1 ? `<span class="text-[10px] bg-parchment-dark border border-parchment-border px-1.5 py-0.2 rounded font-semibold text-espresso-900">+${buildCount - 1}</span>` : ''}
                   </div>
                 </div>
               </div>
@@ -694,13 +429,12 @@
               <!-- Resumo Rápido Horizontal -->
               <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
                 
-                <!-- Armas -->
                 <div class="bg-parchment-light p-2.5 rounded-xl border border-parchment-border">
                   <span class="text-[10px] uppercase font-bold text-parchment-muted block mb-1">
                     <i class="ph-fill ph-sword text-brass-dark"></i> Armas Recomendadas
                   </span>
                   <div class="space-y-0.5">
-                    ${(primaryBuild.weapons || []).slice(0, 3).map((w, idx) => `
+                    ${(primaryBuild.weapons || []).slice(0, 3).map((w) => `
                       <div class="truncate text-[11px] ${w.bis ? 'font-bold text-amber-900' : 'text-parchment-muted'}">
                         ${w.bis ? '★ ' : '• '}${w.name}
                       </div>
@@ -708,26 +442,24 @@
                   </div>
                 </div>
 
-                <!-- Artefatos -->
                 <div class="bg-parchment-light p-2.5 rounded-xl border border-parchment-border">
                   <span class="text-[10px] uppercase font-bold text-parchment-muted block mb-1">
                     <i class="ph-fill ph-shield text-brass-dark"></i> Artefato Principal
                   </span>
-                  <strong class="text-xs text-espresso-900 block leading-snug">
+                  <strong class="text-[11px] text-espresso-900 block leading-snug">
                     ${primaryBuild.artifactSets && primaryBuild.artifactSets[0] ? primaryBuild.artifactSets[0].name : 'A Definir'}
                   </strong>
-                  <span class="text-[10px] text-parchment-muted block mt-1">
-                    Areia: ${primaryBuild.mainStats ? primaryBuild.mainStats.sands : '-'}
+                  <span class="text-[10px] text-parchment-muted block mt-1 truncate">
+                    ${primaryBuild.mainStats ? primaryBuild.mainStats.sands : '-'}
                   </span>
                 </div>
 
-                <!-- Talentos -->
                 <div class="bg-parchment-light p-2.5 rounded-xl border border-parchment-border flex flex-col justify-between">
                   <div>
                     <span class="text-[10px] uppercase font-bold text-parchment-muted block mb-1">
                       <i class="ph-fill ph-sort-ascending text-brass-dark"></i> Prioridade de Talentos
                     </span>
-                    <div class="bg-parchment-dark/70 text-espresso-900 font-bold p-1.5 rounded-lg text-center text-[11px]">
+                    <div class="bg-parchment-dark/70 text-espresso-900 font-bold p-1.5 rounded-lg text-center text-[10px]">
                       ${primaryBuild.talentPriority || 'Normal'}
                     </div>
                   </div>
@@ -735,10 +467,9 @@
 
               </div>
 
-              <!-- Botão Ver Guia Completo -->
+              <!-- Botão Ação -->
               <div class="md:pl-3 flex items-center justify-end shrink-0">
-                <button onclick="openFullGuideModal('${char.id}')" 
-                        class="w-full md:w-auto px-4 py-2.5 rounded-xl bg-espresso-900 hover:bg-espresso-950 text-brass-light font-bold text-xs flex items-center justify-center gap-2 border border-brass-dark shadow transition-all">
+                <button onclick="openFullGuideModal('${char.id}')" class="w-full md:w-auto px-4 py-2.5 rounded-xl bg-espresso-900 hover:bg-espresso-950 text-brass-light font-bold text-xs flex items-center justify-center gap-2 border border-brass-dark shadow transition-all">
                   <i class="ph-bold ph-book-open text-sm"></i>
                   <span>Guia Completo</span>
                 </button>
@@ -769,10 +500,13 @@
 
       activeCharId = charId;
       activeBuildIndex = buildIdx;
-
       const build = char.builds[activeBuildIndex] || char.builds[0];
 
-      document.getElementById('modalCharAvatarWrap').textContent = char.avatarText;
+      // Atualiza o icone do Modal para a pasta icon/
+      const modalIcon = document.getElementById('modalCharIcon');
+      modalIcon.src = `icon/${char.id}.png`;
+      modalIcon.onerror = function() { this.src = `https://placehold.co/120x120/1e293b/38bdf8?text=${char.name.charAt(0)}`; };
+
       document.getElementById('modalCharName').textContent = char.name;
       document.getElementById('modalCharStars').textContent = '★'.repeat(char.rarity || 5);
       
@@ -783,7 +517,7 @@
       document.getElementById('modalCharWeaponBadge').textContent = char.weaponType;
       document.getElementById('modalCharBuildCount').textContent = `${char.builds.length} ${char.builds.length > 1 ? 'Builds' : 'Build'}`;
 
-      // Abas de Builds (quando houver mais de uma)
+      // Abas de Builds
       const tabsRow = document.getElementById('modalBuildTabsRow');
       if (char.builds.length > 1) {
         tabsRow.classList.remove('hidden');
@@ -795,38 +529,33 @@
         `).join('');
       } else {
         tabsRow.classList.add('hidden');
+        tabsRow.innerHTML = '';
       }
 
-      // Metas de Status
-      const statsGrid = document.getElementById('modalStatsGrid');
-      statsGrid.innerHTML = (build.statsAim || []).map(s => `
-        <div class="bg-parchment-dark/70 p-2 rounded-xl border border-parchment-border flex items-center justify-between">
+      // Preenchimento de Informações do Guia
+      document.getElementById('modalStatsGrid').innerHTML = (build.statsAim || []).map(s => `
+        <div class="bg-parchment-dark/70 p-1.5 rounded-lg border border-parchment-border flex justify-between">
           <span class="text-parchment-muted font-semibold">${s.label}:</span>
-          <strong class="text-espresso-950 font-bold">${s.val}</strong>
+          <strong class="text-espresso-950">${s.val}</strong>
         </div>
       `).join('');
 
-      // Talentos
       document.getElementById('modalTalentPriority').textContent = build.talentPriority || 'Geral';
 
-      // Armas Detalhadas
-      const weaponsList = document.getElementById('modalWeaponsList');
-      weaponsList.innerHTML = (build.weapons || []).map(w => `
+      document.getElementById('modalWeaponsList').innerHTML = (build.weapons || []).map(w => `
         <div class="p-2.5 rounded-xl border ${w.bis ? 'bg-amber-50/80 border-brass shadow-sm' : 'bg-parchment-dark/60 border-parchment-border'}">
           <div class="flex items-center gap-1 text-[11px] font-bold ${w.bis ? 'text-amber-800' : 'text-espresso-900'}">
             ${w.bis ? '<i class="ph-fill ph-crown text-amber-600"></i>' : '<i class="ph-bold ph-shield-check"></i>'}
             <span class="truncate">${w.name}</span>
           </div>
-          <p class="text-[11px] text-parchment-muted mt-1 leading-snug">${w.note}</p>
+          <p class="text-[10px] text-parchment-muted mt-1 leading-snug">${w.note}</p>
         </div>
       `).join('');
 
-      // Artefatos
-      const setsContainer = document.getElementById('modalArtifactSets');
-      setsContainer.innerHTML = (build.artifactSets || []).map(a => `
-        <div class="bg-parchment-dark/60 p-2 rounded-xl border border-parchment-border text-xs">
+      document.getElementById('modalArtifactSets').innerHTML = (build.artifactSets || []).map(a => `
+        <div class="bg-parchment-dark/60 p-2 rounded-xl border border-parchment-border text-[11px]">
           <strong class="text-espresso-900 block font-bold">${a.name}</strong>
-          <span class="text-parchment-muted text-[11px]">${a.note}</span>
+          <span class="text-parchment-muted text-[10px]">${a.note}</span>
         </div>
       `).join('');
 
@@ -836,14 +565,12 @@
       document.getElementById('modalStatCirclet').textContent = mainStats.circlet || '-';
       document.getElementById('modalSubstatsPriority').textContent = mainStats.substats || 'Crítico > ATQ%';
 
-      // Equipes
-      const teamsContainer = document.getElementById('modalTeamsContainer');
-      teamsContainer.innerHTML = (build.teams || []).map(t => `
+      document.getElementById('modalTeamsContainer').innerHTML = (build.teams || []).map(t => `
         <div class="bg-parchment-dark/50 p-2.5 rounded-xl border border-parchment-border">
           <span class="text-[11px] font-bold text-espresso-950 block mb-1.5">${t.name}</span>
           <div class="flex flex-wrap gap-1.5">
             ${(t.members || []).map(m => `
-              <span class="px-2.5 py-1 rounded-lg bg-parchment-light border border-parchment-border text-xs font-semibold text-espresso-900">
+              <span class="px-2 py-0.5 rounded-lg bg-parchment-light border border-parchment-border text-[11px] font-semibold text-espresso-900">
                 ☕ ${m}
               </span>
             `).join('')}
@@ -851,22 +578,20 @@
         </div>
       `).join('');
 
-      // Dica Tática
       document.getElementById('modalCombatTip').textContent = build.notes || 'Sem observações adicionais para esta rotação.';
 
-      fullGuideModal.classList.remove('hidden');
+      const modal = document.getElementById('fullGuideModal');
+      modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
 
     function closeFullGuideModal() {
-      fullGuideModal.classList.add('hidden');
+      document.getElementById('fullGuideModal').classList.add('hidden');
       document.body.style.overflow = '';
     }
 
-    fullGuideModal.addEventListener('click', (e) => {
-      if (e.target === fullGuideModal) {
-        closeFullGuideModal();
-      }
+    document.getElementById('fullGuideModal').addEventListener('click', (e) => {
+      if (e.target.id === 'fullGuideModal') closeFullGuideModal();
     });
   </script>
 </body>

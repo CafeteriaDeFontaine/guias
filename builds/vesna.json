@@ -1,0 +1,84 @@
+{
+"id": "vesna",
+"name": "Vesna",
+"rarity": 5,
+"element": "anemo",
+"weaponType": "espada",
+"avatarText": "🌪️",
+"avatar": "https://placehold.co/120x120/1e293b/38bdf8?text=Vesna",
+"builds": [
+{
+"buildName": "DPS Principal (Dispersão Estelar)",
+"role": "Main DPS",
+"talentPriority": "Habilidade (E) > Supremo (Q) > Ataque Normal",
+"statsAim": [
+{ "label": "ATQ Total", "val": "2.000+" },
+{ "label": "Taxa Crítica", "val": "54% - 84%" },
+{ "label": "Dano Crítico", "val": "160% - 200%+" },
+{ "label": "Recarga (ER)", "val": "120% - 140%" }
+],
+"weapons": [
+{
+"name": "Metamorfose da Borboleta (5★)",
+"note": "Arma assinatura (BiS). Entrega 44.1% de Dano Crítico e amplia o dano de Dispersão Estelar em 36%.",
+"bis": true
+},
+{
+"name": "Pluma Invernal do Lago Branco (5★)",
+"note": "Excelente opção com Taxa Crítica (22.1%), bônus de reação estelar e recuperação de energia.",
+"bis": false
+},
+{
+"name": "Novo Ramo (4★)",
+"note": "Destaque 4★. No refino 5 acumula até 36% de ATQ e 48% de dano de Dispersão Estelar.",
+"bis": false
+},
+{
+"name": "Lâmina da Caça Herética (4★)",
+"note": "Arma do Passe com 27.6% de Taxa Crítica e acúmulos contínuos de ATQ.",
+"bis": false
+},
+{
+"name": "Fonte da Chama (4★ F2P)",
+"note": "Opção gratuita forjável com alta proficiência e bônus de dano de reação.",
+"bis": false
+}
+],
+"artifactSets": [
+{
+"name": "4x Prova do Sangue Carmesim",
+"note": "Melhor conjunto absoluto (100% de rendimento). Concede +18% de ATQ, 16% de Taxa Crítica e +40% de dano de Dispersão Estelar."
+},
+{
+"name": "4x Sonhos Dourados",
+"note": "Alternativa viável (91.9%) com grande volume de Proficiência Elemental e ATQ% baseado na equipe."
+},
+{
+"name": "2x Sombra Verde + 2x ATQ%",
+"note": "Combinação transitória equilibrada (88.2%) enquanto completa as 4 peças ideais."
+}
+],
+"mainStats": {
+"sands": "ATQ%",
+"goblet": "ATQ% ou Bônus Anemo",
+"circlet": "Taxa Crítica ou Dano Crítico",
+"substats": "Taxa / Dano Crítico > ATQ% > Recarga de Energia > Proficiência"
+},
+"teams": [
+{
+"name": "Dispersão Estelar com Duplo Anemo",
+"members": ["Vesna", "Vanya", "Faruzan", "Bennett"]
+},
+{
+"name": "Duplo Cryo & Estelar",
+"members": ["Vesna", "Vanya", "Shenhe", "Layla"]
+},
+{
+"name": "Composição Eletro-Estelar",
+"members": ["Vesna", "Vanya", "Fischl", "Kuki Shinobu"]
+}
+],
+"notes": "A Dispersão Estelar da Vesna difere das dispersões comuns por conseguir desferir acertos críticos. Priorize ATQ acima de 2.000 e foque o aprimoramento na Habilidade Elemental (E), responsável pela maior parcela do seu dano contínuo."
+}
+]
+}

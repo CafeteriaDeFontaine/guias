@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cafeteria de Fontaine • Guias e Builds</title>
     
-    <!-- Fontes Google (Cinzel para títulos retrô e Outfit para textos) -->
+    <!-- Fontes Google -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -22,7 +22,6 @@
             --gold-light: #e6c581;
             --gold-border: #8b6833;
             --text-dark: #2a190f;
-            --text-muted: #6e5849;
             --text-light: #f5ebe1;
         }
 
@@ -71,7 +70,7 @@
             margin-top: 4px;
         }
 
-        .main-container { max-width: 1100px; margin: 24px auto 0; padding: 0 16px; }
+        .main-container { max-width: 1050px; margin: 24px auto 0; padding: 0 16px; }
 
         /* FILTROS */
         .filter-panel {
@@ -89,15 +88,9 @@
         .search-box { position: relative; width: 100%; }
         .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--gold-accent); }
         .search-input {
-            width: 100%;
-            background: #1c1109;
-            border: 1px solid #4a3223;
-            border-radius: 30px;
-            padding: 10px 16px 10px 42px;
-            color: var(--text-light);
-            font-family: inherit;
-            font-size: 0.95rem;
-            outline: none;
+            width: 100%; background: #1c1109; border: 1px solid #4a3223;
+            border-radius: 30px; padding: 10px 16px 10px 42px; color: var(--text-light);
+            font-family: inherit; font-size: 0.95rem; outline: none;
         }
         .search-input:focus { border-color: var(--gold-accent); }
 
@@ -105,110 +98,92 @@
         .filter-label { font-size: 0.8rem; font-weight: 600; color: var(--gold-light); text-transform: uppercase; letter-spacing: 1px; min-width: 80px; }
         .filter-tags { display: flex; flex-wrap: wrap; gap: 6px; }
         .filter-btn {
-            background: #20130b;
-            border: 1px solid #4a3223;
-            color: #d8c2b2;
-            padding: 5px 12px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-            cursor: pointer;
-            transition: all 0.2s;
+            background: #20130b; border: 1px solid #4a3223; color: #d8c2b2;
+            padding: 5px 12px; border-radius: 20px; font-size: 0.8rem;
+            font-weight: 500; cursor: pointer; transition: all 0.2s;
         }
         .filter-btn:hover, .filter-btn.active { border-color: var(--gold-accent); color: #fff; }
         .filter-btn.active { background: var(--gold-accent); color: #1a0f08; font-weight: 700; }
 
-        /* CABEÇALHO DA TABELA (Estilo Retangular) */
-        .table-header-row {
+        /* NOVO CARTÃO RETANGULAR QUADRICULADO */
+        .build-card-rect {
             display: grid;
-            grid-template-columns: 220px 140px 180px 1fr 140px;
-            gap: 16px;
-            padding: 0 16px 8px;
-            border-bottom: 2px solid var(--gold-accent);
-            margin-bottom: 12px;
-            color: var(--gold-light);
-            font-family: 'Cinzel', serif;
-            font-size: 0.9rem;
-            font-weight: 700;
-            letter-spacing: 1px;
-        }
-
-        /* CARTÃO TABULAR (LINHA) */
-        .quick-card-row {
-            display: grid;
-            grid-template-columns: 220px 140px 180px 1fr 140px;
+            grid-template-columns: 210px 190px 1fr 180px;
             gap: 16px;
             background: var(--bg-card);
-            border-top: 1px solid var(--gold-border);
-            padding: 16px;
-            align-items: center;
-            transition: background 0.2s, transform 0.2s;
-            cursor: pointer;
-            margin-bottom: 4px;
-        }
-        .quick-card-row:hover { background: #332015; }
-
-        /* DIVISÓRIAS TRACEJADAS */
-        .col-divider {
-            border-right: 1px dashed #6e5849;
-            padding-right: 16px;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .col-divider:last-child { border-right: none; padding-right: 0; }
-
-        /* COLUNA 1: IDENTIDADE */
-        .char-id-col { display: flex; align-items: center; gap: 12px; }
-        .char-id-col img {
-            width: 56px; height: 56px;
-            border-radius: 8px;
-            border: 2px solid var(--gold-border);
-            object-fit: cover;
-            background: #1a100a;
-        }
-        .char-name-block { display: flex; flex-direction: column; }
-        .char-name-block strong { font-size: 1.15rem; color: var(--text-light); font-family: 'Cinzel', serif; letter-spacing: 1px; }
-        .char-name-block span { font-size: 0.75rem; color: #4fc3f7; font-weight: 600; text-transform: uppercase; }
-
-        /* COLUNA 2 E 5: ARMAS E ARTEFATOS (SLOTS) */
-        .item-slots { display: flex; gap: 8px; flex-wrap: wrap; }
-        .item-box {
-            width: 48px; height: 48px;
-            background: #1a100a;
             border: 1px solid var(--gold-border);
-            border-radius: 6px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.65rem;
-            text-align: center;
-            color: #d2c0a3;
-            padding: 2px;
-            position: relative;
-            line-height: 1.1;
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 16px;
+            align-items: stretch;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+            transition: box-shadow 0.2s, border-color 0.2s;
         }
-        .item-box.artifact { border-radius: 50%; } /* Artefatos redondos opcional */
+        .build-card-rect:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.6); border-color: var(--gold-light); }
+
+        /* Divisórias do Grid */
+        .bc-section {
+            display: flex; flex-direction: column; justify-content: center;
+            border-right: 1px dashed #6e5849; padding-right: 16px;
+        }
+        .bc-section:last-child { border-right: none; padding-right: 0; }
+
+        /* 1, 2, 4. Perfil */
+        .bc-profile { flex-direction: row; align-items: center; gap: 14px; justify-content: flex-start; }
+        .bc-avatar {
+            width: 68px; height: 68px; border-radius: 8px;
+            border: 2px solid var(--gold-border); object-fit: cover; background: #1a100a;
+        }
+        .bc-info { display: flex; flex-direction: column; }
+        .bc-name { font-family: 'Cinzel', serif; font-size: 1.3rem; color: var(--text-light); line-height: 1.1; }
+        .bc-role { font-size: 0.75rem; color: #4fc3f7; font-weight: 700; text-transform: uppercase; margin-top: 4px; }
+
+        /* 5, 8. Equipamentos (Armas e Artefatos com Imagens Quadradas) */
+        .bc-gear { gap: 12px; justify-content: flex-start; }
+        .bc-gear-row { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+        .bc-label { font-size: 0.7rem; color: var(--gold-light); font-weight: 700; text-transform: uppercase; }
+        .bc-slots { display: flex; gap: 10px; }
+        
+        .item-box-square {
+            width: 44px; height: 44px;
+            background: #1a100a; border: 1px solid var(--gold-border); border-radius: 6px;
+            position: relative; display: flex; align-items: center; justify-content: center;
+        }
+        .item-box-square img { width: 100%; height: 100%; object-fit: cover; border-radius: 4px; }
         .badge-number {
-            position: absolute; bottom: -4px; right: -4px;
-            background: #fff; color: #000; font-weight: bold;
-            border-radius: 50%; width: 16px; height: 16px;
-            font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+            position: absolute; bottom: -6px; right: -6px;
+            background: #f6eedd; color: #170f0a; font-size: 0.7rem; font-weight: 800;
+            padding: 1px 5px; border-radius: 4px; border: 1px solid var(--gold-border); z-index: 2;
         }
 
-        /* COLUNA 3: STATUS PRINCIPAIS */
-        .main-stats-list { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; color: var(--text-light); }
-        .main-stats-list i { color: var(--gold-light); width: 18px; text-align: center; margin-right: 4px; }
+        /* 6, 7. Atributos */
+        .bc-stats { gap: 8px; justify-content: flex-start; }
+        .bc-main-stats { display: flex; flex-direction: column; gap: 4px; }
+        .stat-line { font-size: 0.85rem; color: var(--text-light); display: flex; align-items: center; gap: 8px; }
+        .stat-line i { color: var(--gold-light); width: 16px; text-align: center; }
+        .bc-sub-stats { margin-top: 4px; }
+        .bc-sub-stats p { font-size: 0.8rem; color: #4fc3f7; margin-top: 2px; font-weight: 500; }
 
-        /* COLUNA 4: SUB-STATUS (LISTA) */
-        .substats-list { display: flex; flex-direction: column; gap: 4px; font-size: 0.82rem; color: var(--text-light); }
-        .substats-list span { color: #4fc3f7; }
+        /* 9, 10. Ações e Talentos */
+        .bc-action { justify-content: space-between; align-items: flex-end; }
+        .bc-talents { width: 100%; margin-bottom: 12px; }
+        .talent-seq {
+            font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700;
+            color: var(--text-light); margin-top: 4px; background: #1a100a;
+            padding: 6px 8px; border: 1px solid var(--gold-border);
+            border-radius: 6px; text-align: center;
+        }
+        .btn-expand-guide {
+            background: var(--gold-accent); color: #1a0f08; border: 1px solid var(--gold-light);
+            padding: 10px 14px; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; transition: all 0.2s; width: 100%; display: flex;
+            align-items: center; justify-content: center; gap: 8px; text-transform: uppercase;
+        }
+        .btn-expand-guide:hover { background: var(--gold-light); transform: translateY(-2px); }
 
-        /* MODAL (Ficha Completa) */
+        /* MODAL */
         .guide-modal-overlay {
-            position: fixed; inset: 0;
-            background: rgba(10, 5, 2, 0.85); backdrop-filter: blur(5px);
+            position: fixed; inset: 0; background: rgba(10, 5, 2, 0.85); backdrop-filter: blur(5px);
             z-index: 1000; display: none; justify-content: center; align-items: center; padding: 16px;
         }
         .guide-modal-overlay.active { display: flex; }
@@ -224,7 +199,7 @@
         }
         .btn-close-modal:hover { background: #a32222; color: #fff; }
 
-        /* TABS NO MODAL (Para múltiplas builds) */
+        /* Abas do Modal */
         .build-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid var(--paper-border); padding-bottom: 10px; flex-wrap: wrap; }
         .build-tab-btn {
             background: var(--paper-sub); border: 1px solid var(--paper-border); color: #6e5849;
@@ -233,7 +208,7 @@
         }
         .build-tab-btn.active { background: #fff; border-color: var(--gold-border); border-bottom-color: #fff; color: #4a2d18; transform: translateY(2px); }
 
-        /* ESTILOS INTERNOS DO MODAL */
+        /* Estrutura Interna Modal */
         .guide-sheet-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
         .guide-sheet-portrait { width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--gold-border); overflow: hidden; background: #1a100a; flex-shrink: 0; }
         .guide-sheet-portrait img { width: 100%; height: 100%; object-fit: cover; }
@@ -253,12 +228,12 @@
         .team-members-chips { display: flex; flex-wrap: wrap; gap: 6px; }
         .team-member-chip { background: #fff; border: 1px solid var(--paper-border); padding: 3px 8px; border-radius: 12px; font-size: 0.78rem; font-weight: 600; }
 
-        /* RESPONSIVO MOBILE */
-        @media (max-width: 900px) {
-            .table-header-row { display: none; }
-            .quick-card-row { grid-template-columns: 1fr; gap: 12px; border: 1px solid var(--gold-border); border-radius: 8px; margin-bottom: 16px; padding: 14px; }
-            .col-divider { border-right: none; border-bottom: 1px dashed #6e5849; padding-right: 0; padding-bottom: 12px; }
-            .col-divider:last-child { border-bottom: none; padding-bottom: 0; }
+        @media (max-width: 950px) {
+            .build-card-rect { grid-template-columns: 1fr; gap: 14px; padding: 18px; }
+            .bc-section { border-right: none; border-bottom: 1px dashed #6e5849; padding-right: 0; padding-bottom: 14px; }
+            .bc-section:last-child { border-bottom: none; padding-bottom: 0; }
+            .bc-action { align-items: stretch; gap: 10px; }
+            .bc-gear-row { justify-content: flex-start; gap: 16px; }
             .guide-two-cols { grid-template-columns: 1fr; }
         }
     </style>
@@ -271,14 +246,11 @@
     </header>
 
     <main class="main-container">
-        
-        <!-- FILTROS -->
         <section class="filter-panel">
             <div class="search-box">
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar personagem...">
             </div>
-
             <div class="filter-row">
                 <span class="filter-label">Elemento:</span>
                 <div class="filter-tags" id="elementFilters">
@@ -292,7 +264,6 @@
                     <button class="filter-btn" data-element="dendro">Dendro</button>
                 </div>
             </div>
-
             <div class="filter-row">
                 <span class="filter-label">Arma:</span>
                 <div class="filter-tags" id="weaponFilters">
@@ -306,21 +277,11 @@
             </div>
         </section>
 
-        <!-- CABEÇALHO TABULAR (Desktop) -->
-        <div class="table-header-row">
-            <div class="th-col">Personagem</div>
-            <div class="th-col">Arma Principal</div>
-            <div class="th-col">Status Primários</div>
-            <div class="th-col">Prioridade de Sub-status</div>
-            <div class="th-col">Artefato Ideal</div>
-        </div>
-
-        <!-- LISTA DE GUIAS (Cards Retangulares) -->
+        <!-- Container dos Cards Retangulares -->
         <section id="guidesContainer"></section>
-
     </main>
 
-    <!-- MODAL DO GUIA COMPLETO -->
+    <!-- Modal do Guia Completo -->
     <div class="guide-modal-overlay" id="guideModal">
         <div class="guide-modal-window">
             <button class="btn-close-modal" id="closeModalBtn" title="Fechar"><i class="fa-solid fa-xmark"></i></button>
@@ -329,47 +290,29 @@
     </div>
 
     <script>
-        /**
-         * 1. REGISTO DE PERSONAGENS
-         * Adicione o ID do personagem aqui sempre que criar um novo JSON na pasta 'builds/'.
-         */
-        const guiasCadastrados = ['vesna', 'lisa', 'furina']; // Exemplo: se criar o mavuika.json, adicione 'mavuika'
+        // LISTA DE JSONs A CARREGAR (Atualize aqui quando adicionar novos arquivos na pasta builds/)
+        const guiasCadastrados = ['vesna', 'lisa', 'furina']; 
         
         let guidesData = [];
         let currentSearch = '';
         let currentElement = 'all';
         let currentWeapon = 'all';
 
-        // Elementos DOM
         const guidesContainer = document.getElementById('guidesContainer');
         const modalOverlay = document.getElementById('guideModal');
         const modalContent = document.getElementById('modalContent');
         
-        /**
-         * 2. FUNÇÃO PARA CARREGAR OS JSONs
-         */
         async function loadGuides() {
-            guidesContainer.innerHTML = '<div style="text-align:center; padding: 40px; color: var(--gold-light);">A preparar os cafés e a ler os ficheiros JSON...</div>';
-            
+            guidesContainer.innerHTML = '<div style="text-align:center; padding: 40px; color: var(--gold-light);">A ler os ficheiros JSON...</div>';
             for (const id of guiasCadastrados) {
                 try {
                     const response = await fetch(`builds/${id}.json`);
-                    if (response.ok) {
-                        const data = await response.json();
-                        guidesData.push(data);
-                    } else {
-                        console.warn(`Aviso: ficheiro builds/${id}.json não encontrado.`);
-                    }
-                } catch (error) {
-                    console.error(`Erro ao carregar ${id}:`, error);
-                }
+                    if (response.ok) guidesData.push(await response.json());
+                } catch (error) { console.error(`Erro ao carregar ${id}:`, error); }
             }
             renderGuides();
         }
 
-        /**
-         * 3. RENDERIZAR TABELA RETANGULAR
-         */
         function renderGuides() {
             const filtered = guidesData.filter(item => {
                 const matchSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase());
@@ -379,7 +322,7 @@
             });
 
             if (filtered.length === 0) {
-                guidesContainer.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted);">Nenhum guia encontrado. Verifique se os ficheiros JSON estão na pasta "builds/".</div>`;
+                guidesContainer.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted);">Nenhum guia encontrado.</div>`;
                 return;
             }
 
@@ -387,45 +330,72 @@
                 const mainBuild = item.builds && item.builds.length > 0 ? item.builds[0] : null;
                 if (!mainBuild) return '';
 
-                // Tratar lista de armas e status
-                const wpns = mainBuild.weapons.slice(0, 2); // Exibe até 2 armas no resumo
-                const aimKeys = Object.keys(mainBuild.statsAim).slice(0, 4);
+                const wpns = mainBuild.weapons.slice(0, 2);
+                const arts = mainBuild.artifactSets.slice(0, 1);
 
                 return `
-                <article class="quick-card-row" onclick="openFullGuide('${item.id}', 0)">
+                <article class="build-card-rect">
                     
-                    <!-- Coluna 1: Identidade -->
-                    <div class="col-divider char-id-col">
-                        <img src="icon/${item.id}.png" onerror="this.src='https://via.placeholder.com/56/1a100a/e6c581?text=?'" alt="${item.name}">
-                        <div class="char-name-block">
-                            <strong>${item.name}</strong>
-                            <span>${mainBuild.role}</span>
+                    <!-- 1, 2, 4. Perfil -->
+                    <div class="bc-section bc-profile">
+                        <img src="icon/${item.id}.png" class="bc-avatar" onerror="this.src='https://via.placeholder.com/68/1a100a/e6c581?text=?'" alt="${item.name}">
+                        <div class="bc-info">
+                            <h3 class="bc-name">${item.name}</h3>
+                            <span class="bc-role">${mainBuild.role}</span>
                         </div>
                     </div>
 
-                    <!-- Coluna 2: Armas -->
-                    <div class="col-divider item-slots">
-                        ${wpns.map(w => `<div class="item-box" title="${w.name}">${w.name.substring(0, 5)}..</div>`).join('')}
-                    </div>
-
-                    <!-- Coluna 3: Status Principais -->
-                    <div class="col-divider main-stats-list">
-                        <div><i class="fa-solid fa-hourglass-half"></i> ${mainBuild.mainStats.sands}</div>
-                        <div><i class="fa-solid fa-wine-glass"></i> ${mainBuild.mainStats.goblet}</div>
-                        <div><i class="fa-solid fa-crown"></i> ${mainBuild.mainStats.circlet}</div>
-                    </div>
-
-                    <!-- Coluna 4: Metas (Substatus) -->
-                    <div class="col-divider substats-list">
-                        ${aimKeys.map((key, i) => `<div>\${i + 1}. ${key}: <span>${mainBuild.statsAim[key]}</span></div>`).join('')}
-                    </div>
-
-                    <!-- Coluna 5: Artefato -->
-                    <div class="col-divider item-slots" style="justify-content: flex-start;">
-                        <div class="item-box artifact" title="${mainBuild.artifactSets[0]?.name || 'Artefato'}">
-                            Set
-                            <span class="badge-number">4</span>
+                    <!-- 5, 8. Armas e Artefatos (Imagens quadradas) -->
+                    <div class="bc-section bc-gear">
+                        <div class="bc-gear-row">
+                            <span class="bc-label">Armas:</span>
+                            <div class="bc-slots">
+                                ${wpns.map((w, index) => `
+                                    <div class="item-box-square" title="\${w.name}">
+                                        <img src="icon/weapons/${w.name.replace(/\\s+/g, '').toLowerCase()}.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" alt="${w.name}">
+                                        <span class="item-placeholder" style="display:none; font-size: 0.55rem; color: #d2c0a3; padding: 2px; text-align: center; line-height: 1;">\${w.name.substring(0, 5)}..</span>
+                                        <span class="badge-number">\${index === 0 ? '1' : '5'}</span>
+                                    </div>
+                                `).join('')}
+                            </div>
                         </div>
+
+                        <div class="bc-gear-row" style="margin-top: 8px;">
+                            <span class="bc-label">Artefatos:</span>
+                            <div class="bc-slots">
+                                ${arts.map(a => `
+                                    <div class="item-box-square" title="\${a.name}">
+                                        <img src="icon/artifacts/${a.name.replace(/\\s+/g, '').toLowerCase()}.png" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';" alt="${a.name}">
+                                        <span class="item-placeholder" style="display:none; font-size: 0.6rem; color: #d2c0a3;">Set</span>
+                                        <span class="badge-number">4</span>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 6, 7. Status Principais e Sub-status -->
+                    <div class="bc-section bc-stats">
+                        <div class="bc-main-stats">
+                            <div class="stat-line" title="Ampulheta"><i class="fa-solid fa-hourglass-half"></i> <span>${mainBuild.mainStats.sands}</span></div>
+                            <div class="stat-line" title="Cálice"><i class="fa-solid fa-wine-glass"></i> <span>${mainBuild.mainStats.goblet}</span></div>
+                            <div class="stat-line" title="Tiara"><i class="fa-solid fa-crown"></i> <span>${mainBuild.mainStats.circlet}</span></div>
+                        </div>
+                        <div class="bc-sub-stats">
+                            <span class="bc-label">Sub-atributos:</span>
+                            <p>${mainBuild.subStatsPriority}</p>
+                        </div>
+                    </div>
+
+                    <!-- 9, 10. Talentos e Botão -->
+                    <div class="bc-section bc-action">
+                        <div class="bc-talents">
+                            <span class="bc-label">Talentos:</span>
+                            <div class="talent-seq">${mainBuild.talentPriority}</div>
+                        </div>
+                        <button class="btn-expand-guide" onclick="openFullGuide('${item.id}', 0)">
+                            <i class="fa-solid fa-expand"></i> Ver Completo
+                        </button>
                     </div>
 
                 </article>
@@ -433,16 +403,11 @@
             }).join('');
         }
 
-        /**
-         * 4. ABRIR O MODAL E RENDERIZAR ABAS
-         */
         window.openFullGuide = function(charId, buildIndex) {
             const charData = guidesData.find(g => g.id === charId);
             if (!charData) return;
 
             const build = charData.builds[buildIndex];
-
-            // Renderizar as Abas se houver mais de uma build
             let tabsHtml = '';
             if (charData.builds.length > 1) {
                 tabsHtml = `
@@ -519,10 +484,10 @@
                                 `).join('')}
                             </div>
                             <div style="font-size: 0.8rem; background: var(--paper-sub); padding: 10px; border-radius: 6px; border: 1px solid var(--paper-border);">
-                                <div style="margin-bottom: 4px;"><strong>Areia:</strong> ${build.mainStats.sands}</div>
+                                <div style="margin-bottom: 4px;"><strong>Ampulheta:</strong> ${build.mainStats.sands}</div>
                                 <div style="margin-bottom: 4px;"><strong>Cálice:</strong> ${build.mainStats.goblet}</div>
-                                <div style="margin-bottom: 8px;"><strong>Coroa:</strong> ${build.mainStats.circlet}</div>
-                                <div style="color: #725642;"><strong>Sub-status:</strong> ${build.subStatsPriority}</div>
+                                <div style="margin-bottom: 8px;"><strong>Tiara:</strong> ${build.mainStats.circlet}</div>
+                                <div style="color: #725642;"><strong>Sub-atributos:</strong> ${build.subStatsPriority}</div>
                             </div>
                         </div>
 
@@ -553,40 +518,24 @@
             document.body.style.overflow = 'hidden';
         };
 
-        // Fechar modal
-        document.getElementById('closeModalBtn').addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
-            document.body.style.overflow = '';
-        });
-        modalOverlay.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-                document.body.style.overflow = '';
-            }
-        });
-
-        // Lógica dos Filtros
+        document.getElementById('closeModalBtn').addEventListener('click', () => { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; });
+        modalOverlay.addEventListener('click', (e) => { if (e.target === modalOverlay) { modalOverlay.classList.remove('active'); document.body.style.overflow = ''; } });
         document.getElementById('searchInput').addEventListener('input', (e) => { currentSearch = e.target.value; renderGuides(); });
         
         document.querySelectorAll('#elementFilters .filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('#elementFilters .filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentElement = btn.dataset.element;
-                renderGuides();
+                btn.classList.add('active'); currentElement = btn.dataset.element; renderGuides();
             });
         });
 
         document.querySelectorAll('#weaponFilters .filter-btn').forEach(btn => {
             btn.addEventListener('click', () => {
                 document.querySelectorAll('#weaponFilters .filter-btn').forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                currentWeapon = btn.dataset.weapon;
-                renderGuides();
+                btn.classList.add('active'); currentWeapon = btn.dataset.weapon; renderGuides();
             });
         });
 
-        // Iniciar
         document.addEventListener('DOMContentLoaded', loadGuides);
     </script>
 </body>

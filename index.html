@@ -1,598 +1,593 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Cafeteria de Fontaine — Guias &amp; Builds</title>
-  
-  <!-- Fontes Google -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <!-- Ícones Phosphor -->
-  <script src="https://unpkg.com/@phosphor-icons/web"></script>
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          colors: {
-            espresso: { 950: '#120a06', 900: '#1b1009', 850: '#23150c', 800: '#2e1c11', 700: '#41291b' },
-            parchment: { DEFAULT: '#f7efe1', light: '#fdfbf7', dark: '#ede0c8', border: '#d5c3a5', muted: '#725a49' },
-            brass: { DEFAULT: '#c59b4c', light: '#e1be75', dark: '#8b6833' }
-          },
-          fontFamily: {
-            display: ['"Cinzel"', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-          }
-        }
-      }
-    }
-  </script>
-
-  <style>
-    body {
-      background-color: #150d08;
-      background-image: 
-        radial-gradient(circle at 50% 0%, rgba(197, 155, 76, 0.14) 0%, transparent 65%),
-        radial-gradient(circle at 100% 100%, rgba(65, 38, 22, 0.4) 0%, transparent 55%),
-        radial-gradient(#2a1a10 1px, transparent 1px);
-      background-size: 100% 100%, 100% 100%, 26px 26px;
-      color: #f7ede2;
-      min-height: 100vh;
-    }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: #1b1009; }
-    ::-webkit-scrollbar-thumb { background: #7c5339; border-radius: 9999px; border: 1px solid #c59b4c; }
-    ::-webkit-scrollbar-thumb:hover { background: #c59b4c; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cafeteria de Fontaine • Guias e Builds</title>
     
-    .vintage-border { position: relative; }
-    .vintage-border::before {
-      content: ""; position: absolute; inset: 4px;
-      border: 1px solid rgba(139, 104, 51, 0.3); border-radius: 14px; pointer-events: none;
-    }
-  </style>
+    <!-- Fontes Google (Cinzel para títulos retrô e Outfit para textos) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-dark: #170f0a;
+            --bg-card: #281911;
+            --paper-bg: #f6eedd;
+            --paper-border: #d2c0a3;
+            --paper-sub: #ede0c7;
+            --gold-accent: #c59b4c;
+            --gold-light: #e6c581;
+            --gold-border: #8b6833;
+            --text-dark: #2a190f;
+            --text-muted: #6e5849;
+            --text-light: #f5ebe1;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            background-color: var(--bg-dark);
+            background-image: 
+                radial-gradient(circle at 50% 0%, rgba(197, 155, 76, 0.12) 0%, transparent 60%),
+                radial-gradient(circle at 100% 100%, rgba(50, 30, 20, 0.4) 0%, transparent 50%);
+            color: var(--text-light);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* HEADER */
+        .site-header {
+            background: linear-gradient(180deg, #1f140e 0%, rgba(23, 15, 10, 0.95) 100%);
+            border-bottom: 2px solid var(--gold-border);
+            padding: 24px 20px 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 4px 18px rgba(0,0,0,0.6);
+            backdrop-filter: blur(8px);
+        }
+
+        .brand-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--gold-light);
+            letter-spacing: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        .brand-subtitle {
+            font-size: 0.85rem;
+            color: #bfa593;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 4px;
+        }
+
+        .main-container { max-width: 1100px; margin: 24px auto 0; padding: 0 16px; }
+
+        /* FILTROS */
+        .filter-panel {
+            background: var(--bg-card);
+            border: 1px solid var(--gold-border);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+        }
+
+        .search-box { position: relative; width: 100%; }
+        .search-box i { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); color: var(--gold-accent); }
+        .search-input {
+            width: 100%;
+            background: #1c1109;
+            border: 1px solid #4a3223;
+            border-radius: 30px;
+            padding: 10px 16px 10px 42px;
+            color: var(--text-light);
+            font-family: inherit;
+            font-size: 0.95rem;
+            outline: none;
+        }
+        .search-input:focus { border-color: var(--gold-accent); }
+
+        .filter-row { display: flex; align-items: center; flex-wrap: wrap; gap: 8px; }
+        .filter-label { font-size: 0.8rem; font-weight: 600; color: var(--gold-light); text-transform: uppercase; letter-spacing: 1px; min-width: 80px; }
+        .filter-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+        .filter-btn {
+            background: #20130b;
+            border: 1px solid #4a3223;
+            color: #d8c2b2;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .filter-btn:hover, .filter-btn.active { border-color: var(--gold-accent); color: #fff; }
+        .filter-btn.active { background: var(--gold-accent); color: #1a0f08; font-weight: 700; }
+
+        /* CABEÇALHO DA TABELA (Estilo Retangular) */
+        .table-header-row {
+            display: grid;
+            grid-template-columns: 220px 140px 180px 1fr 140px;
+            gap: 16px;
+            padding: 0 16px 8px;
+            border-bottom: 2px solid var(--gold-accent);
+            margin-bottom: 12px;
+            color: var(--gold-light);
+            font-family: 'Cinzel', serif;
+            font-size: 0.9rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        /* CARTÃO TABULAR (LINHA) */
+        .quick-card-row {
+            display: grid;
+            grid-template-columns: 220px 140px 180px 1fr 140px;
+            gap: 16px;
+            background: var(--bg-card);
+            border-top: 1px solid var(--gold-border);
+            padding: 16px;
+            align-items: center;
+            transition: background 0.2s, transform 0.2s;
+            cursor: pointer;
+            margin-bottom: 4px;
+        }
+        .quick-card-row:hover { background: #332015; }
+
+        /* DIVISÓRIAS TRACEJADAS */
+        .col-divider {
+            border-right: 1px dashed #6e5849;
+            padding-right: 16px;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .col-divider:last-child { border-right: none; padding-right: 0; }
+
+        /* COLUNA 1: IDENTIDADE */
+        .char-id-col { display: flex; align-items: center; gap: 12px; }
+        .char-id-col img {
+            width: 56px; height: 56px;
+            border-radius: 8px;
+            border: 2px solid var(--gold-border);
+            object-fit: cover;
+            background: #1a100a;
+        }
+        .char-name-block { display: flex; flex-direction: column; }
+        .char-name-block strong { font-size: 1.15rem; color: var(--text-light); font-family: 'Cinzel', serif; letter-spacing: 1px; }
+        .char-name-block span { font-size: 0.75rem; color: #4fc3f7; font-weight: 600; text-transform: uppercase; }
+
+        /* COLUNA 2 E 5: ARMAS E ARTEFATOS (SLOTS) */
+        .item-slots { display: flex; gap: 8px; flex-wrap: wrap; }
+        .item-box {
+            width: 48px; height: 48px;
+            background: #1a100a;
+            border: 1px solid var(--gold-border);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.65rem;
+            text-align: center;
+            color: #d2c0a3;
+            padding: 2px;
+            position: relative;
+            line-height: 1.1;
+        }
+        .item-box.artifact { border-radius: 50%; } /* Artefatos redondos opcional */
+        .badge-number {
+            position: absolute; bottom: -4px; right: -4px;
+            background: #fff; color: #000; font-weight: bold;
+            border-radius: 50%; width: 16px; height: 16px;
+            font-size: 0.65rem; display: flex; align-items: center; justify-content: center;
+        }
+
+        /* COLUNA 3: STATUS PRINCIPAIS */
+        .main-stats-list { display: flex; flex-direction: column; gap: 4px; font-size: 0.85rem; color: var(--text-light); }
+        .main-stats-list i { color: var(--gold-light); width: 18px; text-align: center; margin-right: 4px; }
+
+        /* COLUNA 4: SUB-STATUS (LISTA) */
+        .substats-list { display: flex; flex-direction: column; gap: 4px; font-size: 0.82rem; color: var(--text-light); }
+        .substats-list span { color: #4fc3f7; }
+
+        /* MODAL (Ficha Completa) */
+        .guide-modal-overlay {
+            position: fixed; inset: 0;
+            background: rgba(10, 5, 2, 0.85); backdrop-filter: blur(5px);
+            z-index: 1000; display: none; justify-content: center; align-items: center; padding: 16px;
+        }
+        .guide-modal-overlay.active { display: flex; }
+        .guide-modal-window {
+            background: var(--paper-bg); border: 3px solid var(--gold-border); border-radius: 12px;
+            width: 100%; max-width: 880px; max-height: 90vh; overflow-y: auto;
+            color: var(--text-dark); position: relative; padding: 24px; box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+        .btn-close-modal {
+            position: absolute; top: 14px; right: 14px; background: #3b2315; color: var(--gold-light);
+            border: 1px solid var(--gold-border); width: 32px; height: 32px; border-radius: 50%;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; z-index: 10;
+        }
+        .btn-close-modal:hover { background: #a32222; color: #fff; }
+
+        /* TABS NO MODAL (Para múltiplas builds) */
+        .build-tabs { display: flex; gap: 8px; margin-bottom: 20px; border-bottom: 2px solid var(--paper-border); padding-bottom: 10px; flex-wrap: wrap; }
+        .build-tab-btn {
+            background: var(--paper-sub); border: 1px solid var(--paper-border); color: #6e5849;
+            padding: 8px 16px; border-radius: 8px 8px 0 0; font-family: 'Cinzel', serif; font-weight: 700;
+            cursor: pointer; font-size: 0.9rem; transition: 0.2s;
+        }
+        .build-tab-btn.active { background: #fff; border-color: var(--gold-border); border-bottom-color: #fff; color: #4a2d18; transform: translateY(2px); }
+
+        /* ESTILOS INTERNOS DO MODAL */
+        .guide-sheet-header { display: flex; align-items: center; gap: 16px; margin-bottom: 18px; }
+        .guide-sheet-portrait { width: 80px; height: 80px; border-radius: 8px; border: 2px solid var(--gold-border); overflow: hidden; background: #1a100a; flex-shrink: 0; }
+        .guide-sheet-portrait img { width: 100%; height: 100%; object-fit: cover; }
+        .guide-sheet-info h2 { font-family: 'Cinzel', serif; font-size: 1.8rem; line-height: 1; }
+        .guide-two-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .guide-section { background: #fff; border: 1px solid var(--paper-border); border-radius: 8px; padding: 14px; margin-bottom: 16px; }
+        .section-header-title { font-family: 'Cinzel', serif; font-size: 0.95rem; font-weight: 700; color: #4a2d18; border-bottom: 1px solid var(--paper-border); padding-bottom: 5px; margin-bottom: 10px; display: flex; align-items: center; gap: 6px; }
+        .item-list-block { display: flex; flex-direction: column; gap: 8px; }
+        .item-row-entry { display: flex; align-items: flex-start; gap: 8px; background: var(--paper-sub); padding: 8px 10px; border-radius: 6px; border: 1px solid var(--paper-border); font-size: 0.85rem; }
+        .item-row-entry.bis-entry { border-color: var(--gold-border); background: #fff8e8; }
+        .item-row-entry p { color: #695240; font-size: 0.78rem; margin-top: 2px; }
+        .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 6px; }
+        .stat-box { background: var(--paper-sub); padding: 6px 8px; border-radius: 4px; font-size: 0.8rem; display: flex; justify-content: space-between; border: 1px solid var(--paper-border); }
+        .teams-container { display: flex; flex-direction: column; gap: 8px; }
+        .team-composition-card { background: var(--paper-sub); border: 1px solid var(--paper-border); border-radius: 6px; padding: 10px; }
+        .team-name { font-size: 0.85rem; font-weight: 700; color: #4a2d18; margin-bottom: 6px; }
+        .team-members-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+        .team-member-chip { background: #fff; border: 1px solid var(--paper-border); padding: 3px 8px; border-radius: 12px; font-size: 0.78rem; font-weight: 600; }
+
+        /* RESPONSIVO MOBILE */
+        @media (max-width: 900px) {
+            .table-header-row { display: none; }
+            .quick-card-row { grid-template-columns: 1fr; gap: 12px; border: 1px solid var(--gold-border); border-radius: 8px; margin-bottom: 16px; padding: 14px; }
+            .col-divider { border-right: none; border-bottom: 1px dashed #6e5849; padding-right: 0; padding-bottom: 12px; }
+            .col-divider:last-child { border-bottom: none; padding-bottom: 0; }
+            .guide-two-cols { grid-template-columns: 1fr; }
+        }
+    </style>
 </head>
+<body>
 
-<body class="font-sans antialiased flex flex-col min-h-screen">
+    <header class="site-header">
+        <h1 class="brand-title"><i class="fa-solid fa-mug-hot"></i> CAFETERIA DE FONTAINE</h1>
+        <div class="brand-subtitle">Catálogo Tático & Builds de Personagens</div>
+    </header>
 
-  <!-- CABEÇALHO -->
-  <header class="sticky top-0 z-40 bg-espresso-900/95 backdrop-blur-md border-b-2 border-brass-dark shadow-2xl px-4 py-4 md:py-5">
-    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-      <div class="flex items-center gap-3.5">
-        <div class="w-12 h-12 rounded-2xl bg-espresso-800 border-2 border-brass flex items-center justify-center text-brass-light shadow-inner">
-          <i class="ph-duotone ph-coffee text-2xl"></i>
+    <main class="main-container">
+        
+        <!-- FILTROS -->
+        <section class="filter-panel">
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar personagem...">
+            </div>
+
+            <div class="filter-row">
+                <span class="filter-label">Elemento:</span>
+                <div class="filter-tags" id="elementFilters">
+                    <button class="filter-btn active" data-element="all">Todos</button>
+                    <button class="filter-btn" data-element="hydro">Hydro</button>
+                    <button class="filter-btn" data-element="pyro">Pyro</button>
+                    <button class="filter-btn" data-element="electro">Electro</button>
+                    <button class="filter-btn" data-element="anemo">Anemo</button>
+                    <button class="filter-btn" data-element="cryo">Cryo</button>
+                    <button class="filter-btn" data-element="geo">Geo</button>
+                    <button class="filter-btn" data-element="dendro">Dendro</button>
+                </div>
+            </div>
+
+            <div class="filter-row">
+                <span class="filter-label">Arma:</span>
+                <div class="filter-tags" id="weaponFilters">
+                    <button class="filter-btn active" data-weapon="all">Todas</button>
+                    <button class="filter-btn" data-weapon="espada">Espada</button>
+                    <button class="filter-btn" data-weapon="espadão">Espadão</button>
+                    <button class="filter-btn" data-weapon="lança">Lança</button>
+                    <button class="filter-btn" data-weapon="arco">Arco</button>
+                    <button class="filter-btn" data-weapon="catalisador">Catalisador</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- CABEÇALHO TABULAR (Desktop) -->
+        <div class="table-header-row">
+            <div class="th-col">Personagem</div>
+            <div class="th-col">Arma Principal</div>
+            <div class="th-col">Status Primários</div>
+            <div class="th-col">Prioridade de Sub-status</div>
+            <div class="th-col">Artefato Ideal</div>
         </div>
-        <div>
-          <h1 class="font-display font-extrabold text-xl md:text-2xl tracking-wider text-brass-light drop-shadow">
-            CAFETERIA DE FONTAINE
-          </h1>
-          <p class="text-xs uppercase tracking-widest text-[#cfb6a3] font-medium">Guias de Personagens &amp; Builds de Teyvat</p>
+
+        <!-- LISTA DE GUIAS (Cards Retangulares) -->
+        <section id="guidesContainer"></section>
+
+    </main>
+
+    <!-- MODAL DO GUIA COMPLETO -->
+    <div class="guide-modal-overlay" id="guideModal">
+        <div class="guide-modal-window">
+            <button class="btn-close-modal" id="closeModalBtn" title="Fechar"><i class="fa-solid fa-xmark"></i></button>
+            <div id="modalContent"></div>
         </div>
-      </div>
-      
-      <div class="flex items-center gap-3">
-        <span class="text-xs bg-espresso-800 border border-brass-dark/70 text-brass-light px-3 py-1.5 rounded-full font-semibold">
-          <span id="totalGuidesCount">0</span> Guias Catalogados
-        </span>
-        <a href="https://github.com/CafeteriaDeFontaine/guias" target="_blank" rel="noopener noreferrer" class="text-xs bg-espresso-850 hover:bg-espresso-800 border border-[#5a3e2b] text-[#dfc7b6] hover:text-white px-3 py-1.5 rounded-full flex items-center gap-1.5 transition-colors">
-          <i class="ph-bold ph-github-logo text-sm"></i> <span>GitHub</span>
-        </a>
-      </div>
     </div>
-  </header>
 
-  <!-- PAINEL DE FILTROS & PESQUISA -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 py-6 space-y-6">
-    <section class="bg-espresso-900/90 border border-brass-dark rounded-2xl p-4 md:p-5 shadow-2xl space-y-4">
-      
-      <div class="flex flex-col sm:flex-row gap-3 items-center justify-between">
-        <div class="relative w-full sm:w-96">
-          <i class="ph-bold ph-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-brass"></i>
-          <input type="text" id="searchInput" placeholder="Pesquisar por nome ou função..." class="w-full pl-10 pr-4 py-2.5 rounded-xl bg-espresso-950 border border-[#523827] text-sm text-[#f6eedd] placeholder-[#8d705c] focus:outline-none focus:border-brass transition-all">
-        </div>
-        <div class="text-xs text-[#cfb6a3] flex items-center gap-2">
-          <span>Exibindo: <strong id="visibleGuidesCount" class="text-brass-light font-bold">0</strong></span>
-          <button onclick="resetFilters()" class="text-[11px] underline text-brass hover:text-brass-light cursor-pointer">Limpar Filtros</button>
-        </div>
-      </div>
-
-      <!-- Filtros de Elemento -->
-      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-[#3e291b]">
-        <span class="text-xs font-bold uppercase tracking-wider text-brass-light flex items-center gap-1.5 mr-1 min-w-[80px]">
-          <i class="ph-fill ph-drop-half-bottom"></i> Elemento:
-        </span>
-        <div class="flex flex-wrap gap-1.5" id="elementFilterButtons">
-          <button data-element="ALL" class="elem-btn active px-3 py-1 rounded-lg text-xs font-bold bg-brass text-espresso-950 transition-all">Todos</button>
-          <button data-element="hydro" class="elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">💧 Hydro</button>
-          <button data-element="pyro" class="elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">🔥 Pyro</button>
-          <button data-element="electro" class="elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">⚡ Electro</button>
-          <button data-element="anemo" class="elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">🌪️ Anemo</button>
-          <button data-element="cryo" class="elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">❄️ Cryo</button>
-          <button data-element="geo" class="elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">🪨 Geo</button>
-          <button data-element="dendro" class="elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">🍃 Dendro</button>
-        </div>
-      </div>
-
-      <!-- Filtros de Arma -->
-      <div class="flex flex-wrap items-center gap-2 pt-2 border-t border-[#3e291b]">
-        <span class="text-xs font-bold uppercase tracking-wider text-brass-light flex items-center gap-1.5 mr-1 min-w-[80px]">
-          <i class="ph-fill ph-sword"></i> Arma:
-        </span>
-        <div class="flex flex-wrap gap-1.5" id="weaponFilterButtons">
-          <button data-weapon="ALL" class="weapon-btn active px-3 py-1 rounded-lg text-xs font-bold bg-brass text-espresso-950 transition-all">Todas</button>
-          <button data-weapon="espada" class="weapon-btn px-3 py-1 rounded-lg text-xs font-medium bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">Espada</button>
-          <button data-weapon="espadão" class="weapon-btn px-3 py-1 rounded-lg text-xs font-medium bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">Espadão</button>
-          <button data-weapon="lança" class="weapon-btn px-3 py-1 rounded-lg text-xs font-medium bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">Lança</button>
-          <button data-weapon="arco" class="weapon-btn px-3 py-1 rounded-lg text-xs font-medium bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">Arco</button>
-          <button data-weapon="catalisador" class="weapon-btn px-3 py-1 rounded-lg text-xs font-medium bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700">Catalisador</button>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTAINER DA LISTA RÁPIDA -->
-    <section class="space-y-3.5" id="guidesListContainer">
-      <div class="text-center p-10 text-brass-light flex flex-col items-center justify-center">
-        <i class="ph-duotone ph-spinner-gap animate-spin text-4xl mb-4"></i>
-        <span>Passando o café e carregando os guias...</span>
-      </div>
-    </section>
-  </main>
-
-  <!-- MODAL DO GUIA COMPLETO -->
-  <div id="fullGuideModal" class="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm hidden flex items-center justify-center p-3 sm:p-5 overflow-y-auto">
-    <div class="bg-parchment text-espresso-950 border-4 border-brass-dark rounded-3xl max-w-3xl w-full my-auto shadow-2xl overflow-hidden relative vintage-border max-h-[92vh] flex flex-col">
-      
-      <!-- Topo Modal -->
-      <div class="relative bg-gradient-to-r from-espresso-900 to-espresso-800 text-parchment p-5 border-b-2 border-brass-dark flex items-center justify-between shrink-0">
-        <div class="flex items-center gap-4">
-          <div class="w-16 h-16 rounded-full border-2 border-brass bg-espresso-950 overflow-hidden shadow-md shrink-0 flex items-center justify-center">
-            <img id="modalCharIcon" src="" alt="Icon" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/120x120/1e293b/38bdf8?text=?'">
-          </div>
-          <div>
-            <div class="flex items-center gap-2.5">
-              <h2 id="modalCharName" class="font-display font-bold text-2xl text-brass-light leading-none">Personagem</h2>
-              <span id="modalCharStars" class="text-amber-400 text-sm tracking-widest"></span>
-            </div>
-            <div class="flex items-center gap-2 mt-1.5 text-xs text-[#d8c3b0]">
-              <span id="modalCharElementBadge" class="px-2 py-0.5 rounded-full font-bold uppercase text-[10px]">Elemento</span>
-              <span>•</span>
-              <span id="modalCharWeaponBadge" class="font-semibold capitalize">Arma</span>
-              <span>•</span>
-              <span id="modalCharBuildCount" class="text-brass-light font-medium">1 Build</span>
-            </div>
-          </div>
-        </div>
-        <button onclick="closeFullGuideModal()" class="w-9 h-9 rounded-full bg-espresso-850 hover:bg-red-900 text-brass-light hover:text-white border border-brass-dark flex items-center justify-center transition-colors">
-          <i class="ph-bold ph-x text-lg"></i>
-        </button>
-      </div>
-
-      <!-- Abas de Builds Múltiplas -->
-      <div id="modalBuildTabsRow" class="bg-parchment-dark border-b border-parchment-border px-4 py-2 flex flex-wrap gap-2 shrink-0"></div>
-
-      <!-- Conteúdo Interno Rolável da Build -->
-      <div class="p-4 sm:p-6 space-y-5 overflow-y-auto flex-1 text-espresso-950 text-xs sm:text-sm">
+    <script>
+        /**
+         * 1. REGISTO DE PERSONAGENS
+         * Adicione o ID do personagem aqui sempre que criar um novo JSON na pasta 'builds/'.
+         */
+        const guiasCadastrados = ['vesna', 'lisa', 'furina']; // Exemplo: se criar o mavuika.json, adicione 'mavuika'
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Metas de Status -->
-          <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm">
-            <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-2.5 flex items-center gap-2">
-              <i class="ph-fill ph-chart-line-up text-brass-dark text-base"></i> Metas de Status (Nível 90)
-            </h3>
-            <div class="grid grid-cols-2 gap-2 text-[11px]" id="modalStatsGrid"></div>
-          </div>
-          <!-- Ordem de Talentos -->
-          <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm flex flex-col justify-between">
-            <div>
-              <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-2.5 flex items-center gap-2">
-                <i class="ph-fill ph-arrow-fat-line-right text-brass-dark text-base"></i> Ordem de Talentos
-              </h3>
-              <div id="modalTalentPriority" class="bg-parchment-dark p-3 rounded-xl border border-parchment-border font-bold text-espresso-900 text-center tracking-wide text-xs"></div>
-            </div>
-          </div>
-        </div>
+        let guidesData = [];
+        let currentSearch = '';
+        let currentElement = 'all';
+        let currentWeapon = 'all';
 
-        <!-- Armas Recomendadas -->
-        <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm">
-          <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-3 flex items-center gap-2">
-            <i class="ph-fill ph-sword text-brass-dark text-base"></i> Armas Recomendadas
-          </h3>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5" id="modalWeaponsList"></div>
-        </div>
-
-        <!-- Artefatos -->
-        <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm space-y-3">
-          <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 flex items-center gap-2">
-            <i class="ph-fill ph-shield-chevron text-brass-dark text-base"></i> Artefatos &amp; Atributos
-          </h3>
-          <div id="modalArtifactSets" class="space-y-1.5"></div>
-          
-          <div class="grid grid-cols-3 gap-2 pt-2 border-t border-parchment-border text-center">
-            <div class="bg-parchment-dark/70 p-2.5 rounded-xl border border-parchment-border">
-              <span class="text-[10px] uppercase font-bold text-parchment-muted block">Ampulheta</span>
-              <strong id="modalStatSands" class="text-[11px] text-espresso-900 block mt-0.5"></strong>
-            </div>
-            <div class="bg-parchment-dark/70 p-2.5 rounded-xl border border-parchment-border">
-              <span class="text-[10px] uppercase font-bold text-parchment-muted block">Cálice</span>
-              <strong id="modalStatGoblet" class="text-[11px] text-espresso-900 block mt-0.5"></strong>
-            </div>
-            <div class="bg-parchment-dark/70 p-2.5 rounded-xl border border-parchment-border">
-              <span class="text-[10px] uppercase font-bold text-parchment-muted block">Tiara</span>
-              <strong id="modalStatCirclet" class="text-[11px] text-espresso-900 block mt-0.5"></strong>
-            </div>
-          </div>
-          <div class="bg-parchment-dark/40 p-2.5 rounded-xl border border-parchment-border text-[11px]">
-            <span class="font-bold text-espresso-900">Subatributos: </span>
-            <span id="modalSubstatsPriority" class="text-parchment-muted font-medium"></span>
-          </div>
-        </div>
-
-        <!-- Equipes -->
-        <div class="bg-parchment-light border border-parchment-border rounded-2xl p-4 shadow-sm">
-          <h3 class="font-display font-bold text-espresso-900 text-sm border-b border-parchment-border pb-1.5 mb-2.5 flex items-center gap-2">
-            <i class="ph-fill ph-users-three text-brass-dark text-base"></i> Sinergia de Equipes
-          </h3>
-          <div id="modalTeamsContainer" class="space-y-2.5"></div>
-        </div>
-
-        <!-- Dicas -->
-        <div class="bg-espresso-900 text-parchment rounded-2xl p-4 border border-brass-dark">
-          <h3 class="font-display font-bold text-brass-light text-sm mb-1.5 flex items-center gap-2">
-            <i class="ph-fill ph-lightbulb-filament text-amber-300 text-base"></i> Dica de Combate
-          </h3>
-          <p id="modalCombatTip" class="text-[11px] leading-relaxed text-[#eddccf]"></p>
-        </div>
-
-      </div>
-
-      <!-- Rodapé -->
-      <div class="bg-parchment-dark px-5 py-3 border-t border-parchment-border flex justify-end shrink-0">
-        <button onclick="closeFullGuideModal()" class="px-5 py-2 rounded-xl bg-espresso-900 hover:bg-espresso-950 text-brass-light text-xs font-bold transition-colors shadow">
-          Fechar Guia
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    // ==========================================
-    // 1. LISTA DE PERSONAGENS CADASTRADOS
-    // Para adicionar um novo personagem, crie o arquivo JSON na pasta "builds/"
-    // e adicione o ID (nome do arquivo sem o .json) nesta lista abaixo:
-    // ==========================================
-    const guiasCadastrados = [
-      'vesna'
-      // 'furina',
-      // 'lisa'
-    ];
-    // ==========================================
-
-    let CHARACTERS_DATA = [];
-    let activeCharId = null;
-    let activeBuildIndex = 0;
-    let filterSearchText = '';
-    let filterActiveElement = 'ALL';
-    let filterActiveWeapon = 'ALL';
-
-    const guidesListContainer = document.getElementById('guidesListContainer');
-    const totalGuidesCountEl = document.getElementById('totalGuidesCount');
-    const visibleGuidesCountEl = document.getElementById('visibleGuidesCount');
-
-    // Inicialização
-    document.addEventListener('DOMContentLoaded', () => {
-      setupFilters();
-      loadAllGuides();
-    });
-
-    // Buscar os arquivos JSON dinamicamente
-    async function loadAllGuides() {
-      try {
-        const fetchPromises = guiasCadastrados.map(id => 
-          fetch(`builds/${id}.json`)
-            .then(res => {
-              if (!res.ok) throw new Error(`Arquivo não encontrado: ${id}.json`);
-              return res.json();
-            })
-            .catch(err => {
-              console.error(err);
-              return null; // Retorna nulo se falhar um específico para não quebrar a tela inteira
-            })
-        );
+        // Elementos DOM
+        const guidesContainer = document.getElementById('guidesContainer');
+        const modalOverlay = document.getElementById('guideModal');
+        const modalContent = document.getElementById('modalContent');
         
-        const results = await Promise.all(fetchPromises);
-        // Filtrar os nulos (erros de fetch)
-        CHARACTERS_DATA = results.filter(char => char !== null);
-        
-        totalGuidesCountEl.textContent = CHARACTERS_DATA.length;
-        renderGuidesList();
-      } catch (error) {
-        console.error("Erro fatal ao carregar:", error);
-        guidesListContainer.innerHTML = `
-          <div class="bg-red-900/40 border border-red-500 rounded-2xl p-10 text-center text-red-200">
-            <h4 class="font-bold text-lg mb-2">Erro ao carregar os dados!</h4>
-            <p class="text-xs">Verifique se você está rodando isso via Servidor Local (ou GitHub Pages) e se a pasta <strong>builds/</strong> existe com os arquivos JSON.</p>
-          </div>
-        `;
-      }
-    }
+        /**
+         * 2. FUNÇÃO PARA CARREGAR OS JSONs
+         */
+        async function loadGuides() {
+            guidesContainer.innerHTML = '<div style="text-align:center; padding: 40px; color: var(--gold-light);">A preparar os cafés e a ler os ficheiros JSON...</div>';
+            
+            for (const id of guiasCadastrados) {
+                try {
+                    const response = await fetch(`builds/${id}.json`);
+                    if (response.ok) {
+                        const data = await response.json();
+                        guidesData.push(data);
+                    } else {
+                        console.warn(`Aviso: ficheiro builds/${id}.json não encontrado.`);
+                    }
+                } catch (error) {
+                    console.error(`Erro ao carregar ${id}:`, error);
+                }
+            }
+            renderGuides();
+        }
 
-    function setupFilters() {
-      document.getElementById('searchInput').addEventListener('input', (e) => {
-        filterSearchText = e.target.value.toLowerCase().trim();
-        renderGuidesList();
-      });
+        /**
+         * 3. RENDERIZAR TABELA RETANGULAR
+         */
+        function renderGuides() {
+            const filtered = guidesData.filter(item => {
+                const matchSearch = item.name.toLowerCase().includes(currentSearch.toLowerCase());
+                const matchElement = currentElement === 'all' || item.element === currentElement;
+                const matchWeapon = currentWeapon === 'all' || item.weaponType === currentWeapon;
+                return matchSearch && matchElement && matchWeapon;
+            });
 
-      document.querySelectorAll('#elementFilterButtons .elem-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('#elementFilterButtons .elem-btn').forEach(b => {
-            b.classList.remove('active', 'bg-brass', 'text-espresso-950');
-            b.classList.add('bg-espresso-800', 'text-[#dfcbbd]');
-          });
-          btn.classList.add('active', 'bg-brass', 'text-espresso-950');
-          btn.classList.remove('bg-espresso-800', 'text-[#dfcbbd]');
-          filterActiveElement = btn.dataset.element;
-          renderGuidesList();
-        });
-      });
+            if (filtered.length === 0) {
+                guidesContainer.innerHTML = `<div style="text-align: center; padding: 40px; color: var(--text-muted);">Nenhum guia encontrado. Verifique se os ficheiros JSON estão na pasta "builds/".</div>`;
+                return;
+            }
 
-      document.querySelectorAll('#weaponFilterButtons .weapon-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('#weaponFilterButtons .weapon-btn').forEach(b => {
-            b.classList.remove('active', 'bg-brass', 'text-espresso-950');
-            b.classList.add('bg-espresso-800', 'text-[#dfcbbd]');
-          });
-          btn.classList.add('active', 'bg-brass', 'text-espresso-950');
-          btn.classList.remove('bg-espresso-800', 'text-[#dfcbbd]');
-          filterActiveWeapon = btn.dataset.weapon;
-          renderGuidesList();
-        });
-      });
-    }
+            guidesContainer.innerHTML = filtered.map(item => {
+                const mainBuild = item.builds && item.builds.length > 0 ? item.builds[0] : null;
+                if (!mainBuild) return '';
 
-    function resetFilters() {
-      filterSearchText = '';
-      filterActiveElement = 'ALL';
-      filterActiveWeapon = 'ALL';
-      document.getElementById('searchInput').value = '';
+                // Tratar lista de armas e status
+                const wpns = mainBuild.weapons.slice(0, 2); // Exibe até 2 armas no resumo
+                const aimKeys = Object.keys(mainBuild.statsAim).slice(0, 4);
 
-      document.querySelectorAll('#elementFilterButtons .elem-btn').forEach((b, i) => {
-        b.className = i === 0 
-          ? 'elem-btn active px-3 py-1 rounded-lg text-xs font-bold bg-brass text-espresso-950 transition-all'
-          : 'elem-btn px-3 py-1 rounded-lg text-xs font-semibold bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700';
-      });
-
-      document.querySelectorAll('#weaponFilterButtons .weapon-btn').forEach((b, i) => {
-        b.className = i === 0 
-          ? 'weapon-btn active px-3 py-1 rounded-lg text-xs font-bold bg-brass text-espresso-950 transition-all'
-          : 'weapon-btn px-3 py-1 rounded-lg text-xs font-medium bg-espresso-800 text-[#dfcbbd] hover:bg-espresso-700';
-      });
-
-      renderGuidesList();
-    }
-
-    function renderGuidesList() {
-      const filtered = CHARACTERS_DATA.filter(char => {
-        const primaryBuild = char.builds[0] || {};
-        const matchesSearch = char.name.toLowerCase().includes(filterSearchText) ||
-                              (primaryBuild.role && primaryBuild.role.toLowerCase().includes(filterSearchText)) ||
-                              char.element.toLowerCase().includes(filterSearchText);
-        const matchesElem = filterActiveElement === 'ALL' || char.element.toLowerCase() === filterActiveElement.toLowerCase();
-        const matchesWeap = filterActiveWeapon === 'ALL' || char.weaponType.toLowerCase() === filterActiveWeapon.toLowerCase();
-        return matchesSearch && matchesElem && matchesWeap;
-      });
-
-      visibleGuidesCountEl.textContent = filtered.length;
-
-      if (filtered.length === 0) {
-        guidesListContainer.innerHTML = `
-          <div class="bg-espresso-900 border border-dashed border-[#5a3e2b] rounded-2xl p-10 text-center text-[#b89f8d]">
-            <i class="ph-duotone ph-coffee text-4xl text-brass mb-2"></i>
-            <h4 class="font-display font-bold text-lg text-brass-light">Nenhum guia encontrado</h4>
-            <p class="text-xs mt-1">Tente remover alguns filtros ou buscar por outro termo.</p>
-          </div>
-        `;
-        return;
-      }
-
-      guidesListContainer.innerHTML = filtered.map(char => {
-        const primaryBuild = char.builds[0] || {};
-        const buildCount = char.builds.length;
-        const iconPath = `icon/${char.id}.png`; // Puxando foto da pasta icon/
-
-        return `
-          <article class="bg-parchment text-espresso-950 border-2 border-parchment-border rounded-2xl shadow-xl overflow-hidden vintage-border hover:shadow-2xl transition-all">
-            <div class="p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-4">
-              
-              <!-- Identidade -->
-              <div class="flex items-center gap-3.5 md:w-64 md:border-r border-dashed border-parchment-border md:pr-4 shrink-0">
-                <div class="w-14 h-14 rounded-full border-2 border-brass-dark bg-espresso-900 overflow-hidden shadow-inner shrink-0">
-                  <img src="${iconPath}" alt="${char.name}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/120x120/1e293b/38bdf8?text=${char.name.charAt(0)}'">
-                </div>
-                <div>
-                  <h3 class="font-display font-bold text-xl text-espresso-950 leading-tight">${char.name}</h3>
-                  <div class="flex items-center gap-1.5 mt-1 text-[11px] font-semibold">
-                    <span class="px-2 py-0.5 rounded-full ${getElementBadgeClass(char.element)} font-bold uppercase text-[10px]">${char.element}</span>
-                    <span class="text-parchment-muted capitalize">• ${char.weaponType}</span>
-                  </div>
-                  <div class="flex items-center gap-1.5 mt-0.5">
-                    <span class="text-[11px] text-[#825e45] font-bold">${primaryBuild.role || 'Geral'}</span>
-                    ${buildCount > 1 ? `<span class="text-[10px] bg-parchment-dark border border-parchment-border px-1.5 py-0.2 rounded font-semibold text-espresso-900">+${buildCount - 1}</span>` : ''}
-                  </div>
-                </div>
-              </div>
-
-              <!-- Resumo Rápido Horizontal -->
-              <div class="flex-1 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs">
-                
-                <div class="bg-parchment-light p-2.5 rounded-xl border border-parchment-border">
-                  <span class="text-[10px] uppercase font-bold text-parchment-muted block mb-1">
-                    <i class="ph-fill ph-sword text-brass-dark"></i> Armas Recomendadas
-                  </span>
-                  <div class="space-y-0.5">
-                    ${(primaryBuild.weapons || []).slice(0, 3).map((w) => `
-                      <div class="truncate text-[11px] ${w.bis ? 'font-bold text-amber-900' : 'text-parchment-muted'}">
-                        ${w.bis ? '★ ' : '• '}${w.name}
-                      </div>
-                    `).join('')}
-                  </div>
-                </div>
-
-                <div class="bg-parchment-light p-2.5 rounded-xl border border-parchment-border">
-                  <span class="text-[10px] uppercase font-bold text-parchment-muted block mb-1">
-                    <i class="ph-fill ph-shield text-brass-dark"></i> Artefato Principal
-                  </span>
-                  <strong class="text-[11px] text-espresso-900 block leading-snug">
-                    ${primaryBuild.artifactSets && primaryBuild.artifactSets[0] ? primaryBuild.artifactSets[0].name : 'A Definir'}
-                  </strong>
-                  <span class="text-[10px] text-parchment-muted block mt-1 truncate">
-                    ${primaryBuild.mainStats ? primaryBuild.mainStats.sands : '-'}
-                  </span>
-                </div>
-
-                <div class="bg-parchment-light p-2.5 rounded-xl border border-parchment-border flex flex-col justify-between">
-                  <div>
-                    <span class="text-[10px] uppercase font-bold text-parchment-muted block mb-1">
-                      <i class="ph-fill ph-sort-ascending text-brass-dark"></i> Prioridade de Talentos
-                    </span>
-                    <div class="bg-parchment-dark/70 text-espresso-900 font-bold p-1.5 rounded-lg text-center text-[10px]">
-                      ${primaryBuild.talentPriority || 'Normal'}
+                return `
+                <article class="quick-card-row" onclick="openFullGuide('${item.id}', 0)">
+                    
+                    <!-- Coluna 1: Identidade -->
+                    <div class="col-divider char-id-col">
+                        <img src="icon/${item.id}.png" onerror="this.src='https://via.placeholder.com/56/1a100a/e6c581?text=?'" alt="${item.name}">
+                        <div class="char-name-block">
+                            <strong>${item.name}</strong>
+                            <span>${mainBuild.role}</span>
+                        </div>
                     </div>
-                  </div>
+
+                    <!-- Coluna 2: Armas -->
+                    <div class="col-divider item-slots">
+                        ${wpns.map(w => `<div class="item-box" title="${w.name}">${w.name.substring(0, 5)}..</div>`).join('')}
+                    </div>
+
+                    <!-- Coluna 3: Status Principais -->
+                    <div class="col-divider main-stats-list">
+                        <div><i class="fa-solid fa-hourglass-half"></i> ${mainBuild.mainStats.sands}</div>
+                        <div><i class="fa-solid fa-wine-glass"></i> ${mainBuild.mainStats.goblet}</div>
+                        <div><i class="fa-solid fa-crown"></i> ${mainBuild.mainStats.circlet}</div>
+                    </div>
+
+                    <!-- Coluna 4: Metas (Substatus) -->
+                    <div class="col-divider substats-list">
+                        ${aimKeys.map((key, i) => `<div>\${i + 1}. ${key}: <span>${mainBuild.statsAim[key]}</span></div>`).join('')}
+                    </div>
+
+                    <!-- Coluna 5: Artefato -->
+                    <div class="col-divider item-slots" style="justify-content: flex-start;">
+                        <div class="item-box artifact" title="${mainBuild.artifactSets[0]?.name || 'Artefato'}">
+                            Set
+                            <span class="badge-number">4</span>
+                        </div>
+                    </div>
+
+                </article>
+                `;
+            }).join('');
+        }
+
+        /**
+         * 4. ABRIR O MODAL E RENDERIZAR ABAS
+         */
+        window.openFullGuide = function(charId, buildIndex) {
+            const charData = guidesData.find(g => g.id === charId);
+            if (!charData) return;
+
+            const build = charData.builds[buildIndex];
+
+            // Renderizar as Abas se houver mais de uma build
+            let tabsHtml = '';
+            if (charData.builds.length > 1) {
+                tabsHtml = `
+                <div class="build-tabs">
+                    ${charData.builds.map((b, idx) => `
+                        <button class="build-tab-btn \${idx === buildIndex ? 'active' : ''}" 
+                                onclick="openFullGuide('${charId}',${idx})">
+                            \${b.buildName}
+                        </button>
+                    `).join('')}
+                </div>`;
+            }
+
+            modalContent.innerHTML = `
+                <div class="guide-sheet-header">
+                    <div class="guide-sheet-portrait">
+                        <img src="icon/${charData.id}.png" onerror="this.src='https://via.placeholder.com/80/1a100a/e6c581?text=?'" alt="${charData.name}">
+                    </div>
+                    <div class="guide-sheet-info">
+                        <h2>${charData.name}</h2>
+                        <div style="font-size: 0.85rem; color: var(--text-muted); margin-top: 6px;">
+                            <strong>Elemento:</strong> ${charData.element.toUpperCase()} | 
+                            <strong>Arma:</strong> ${charData.weaponType.toUpperCase()}
+                        </div>
+                    </div>
                 </div>
 
-              </div>
+                ${tabsHtml}
 
-              <!-- Botão Ação -->
-              <div class="md:pl-3 flex items-center justify-end shrink-0">
-                <button onclick="openFullGuideModal('${char.id}')" class="w-full md:w-auto px-4 py-2.5 rounded-xl bg-espresso-900 hover:bg-espresso-950 text-brass-light font-bold text-xs flex items-center justify-center gap-2 border border-brass-dark shadow transition-all">
-                  <i class="ph-bold ph-book-open text-sm"></i>
-                  <span>Guia Completo</span>
-                </button>
-              </div>
+                <div class="guide-section" style="margin-bottom: 16px; border-color: var(--gold-accent); background: #fffcf5;">
+                    <div style="display: flex; justify-content: space-between; font-weight: 600; color: #4a2d18;">
+                        <span>Função: ${build.role}</span>
+                        <span>Talentos: ${build.talentPriority}</span>
+                    </div>
+                </div>
 
-            </div>
-          </article>
-        `;
-      }).join('');
-    }
+                <div class="guide-two-cols">
+                    <div>
+                        <div class="guide-section">
+                            <h3 class="section-header-title"><i class="fa-solid fa-shield"></i> Escolhas de Armas</h3>
+                            <div class="item-list-block">
+                                ${build.weapons.map(w => `
+                                    <div class="item-row-entry \${w.bis ? 'bis-entry' : ''}">
+                                        <i class="fa-solid ${w.bis ? 'fa-star' : 'fa-check'}" style="color: ${w.bis ? '#c59b4c' : '#7b6250'}; margin-top: 3px;"></i>
+                                        <div>
+                                            <strong>${w.name}</strong>${w.note ? `<p>${w.note}</p>` : ''}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
 
-    function getElementBadgeClass(element) {
-      switch((element || '').toLowerCase()) {
-        case 'hydro': return 'bg-blue-100 text-blue-900 border border-blue-300';
-        case 'pyro': return 'bg-red-100 text-red-900 border border-red-300';
-        case 'electro': return 'bg-purple-100 text-purple-900 border border-purple-300';
-        case 'anemo': return 'bg-emerald-100 text-emerald-900 border border-emerald-300';
-        case 'cryo': return 'bg-cyan-100 text-cyan-900 border border-cyan-300';
-        case 'geo': return 'bg-amber-100 text-amber-900 border border-amber-300';
-        case 'dendro': return 'bg-lime-100 text-lime-900 border border-lime-300';
-        default: return 'bg-gray-100 text-gray-800';
-      }
-    }
+                        <div class="guide-section">
+                            <h3 class="section-header-title"><i class="fa-solid fa-sliders"></i> Atributos (Nível 90)</h3>
+                            <div class="stats-grid">
+                                ${Object.entries(build.statsAim).map(stat => `
+                                    <div class="stat-box"><span>${stat[0]}</span> <strong>${stat[1]}</strong></div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
 
-    function openFullGuideModal(charId, buildIdx = 0) {
-      const char = CHARACTERS_DATA.find(c => c.id === charId);
-      if (!char) return;
+                    <div>
+                        <div class="guide-section">
+                            <h3 class="section-header-title"><i class="fa-solid fa-gem"></i> Artefatos Recomendados</h3>
+                            <div class="item-list-block" style="margin-bottom: 10px;">
+                                ${build.artifactSets.map(a => `
+                                    <div class="item-row-entry">
+                                        <i class="fa-solid fa-check" style="color: #c59b4c; margin-top: 3px;"></i>
+                                        <div>
+                                            <strong>${a.name}</strong>${a.note ? `<p>${a.note}</p>` : ''}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                            <div style="font-size: 0.8rem; background: var(--paper-sub); padding: 10px; border-radius: 6px; border: 1px solid var(--paper-border);">
+                                <div style="margin-bottom: 4px;"><strong>Areia:</strong> ${build.mainStats.sands}</div>
+                                <div style="margin-bottom: 4px;"><strong>Cálice:</strong> ${build.mainStats.goblet}</div>
+                                <div style="margin-bottom: 8px;"><strong>Coroa:</strong> ${build.mainStats.circlet}</div>
+                                <div style="color: #725642;"><strong>Sub-status:</strong> ${build.subStatsPriority}</div>
+                            </div>
+                        </div>
 
-      activeCharId = charId;
-      activeBuildIndex = buildIdx;
-      const build = char.builds[activeBuildIndex] || char.builds[0];
+                        <div class="guide-section">
+                            <h3 class="section-header-title"><i class="fa-solid fa-users"></i> Sugestões de Equipa</h3>
+                            <div class="teams-container">
+                                ${build.teams.map(t => `
+                                    <div class="team-composition-card">
+                                        <div class="team-name">\${t.name}</div>
+                                        <div class="team-members-chips">
+                                            \${t.members.map(m => `<span class="team-member-chip">${m}</span>`).join('')}
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-      // Atualiza o icone do Modal para a pasta icon/
-      const modalIcon = document.getElementById('modalCharIcon');
-      modalIcon.src = `icon/${char.id}.png`;
-      modalIcon.onerror = function() { this.src = `https://placehold.co/120x120/1e293b/38bdf8?text=${char.name.charAt(0)}`; };
+                ${build.notes ? `
+                <div class="guide-section" style="background: #fffdf8; border-color: var(--gold-border); margin-bottom:0;">
+                    <h3 class="section-header-title"><i class="fa-solid fa-mug-hot"></i> Dicas do Barista</h3>
+                    <p style="font-size: 0.85rem; color: #4a3424; line-height: 1.5;">\${build.notes}</p>
+                </div>` : ''}
+            `;
 
-      document.getElementById('modalCharName').textContent = char.name;
-      document.getElementById('modalCharStars').textContent = '★'.repeat(char.rarity || 5);
-      
-      const badgeEl = document.getElementById('modalCharElementBadge');
-      badgeEl.textContent = char.element;
-      badgeEl.className = `px-2 py-0.5 rounded-full font-bold uppercase text-[10px] ${getElementBadgeClass(char.element)}`;
+            modalOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        };
 
-      document.getElementById('modalCharWeaponBadge').textContent = char.weaponType;
-      document.getElementById('modalCharBuildCount').textContent = `${char.builds.length} ${char.builds.length > 1 ? 'Builds' : 'Build'}`;
+        // Fechar modal
+        document.getElementById('closeModalBtn').addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+        modalOverlay.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+                document.body.style.overflow = '';
+            }
+        });
 
-      // Abas de Builds
-      const tabsRow = document.getElementById('modalBuildTabsRow');
-      if (char.builds.length > 1) {
-        tabsRow.classList.remove('hidden');
-        tabsRow.innerHTML = char.builds.map((b, idx) => `
-          <button onclick="openFullGuideModal('${char.id}', ${idx})" 
-                  class="px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${idx === activeBuildIndex ? 'bg-espresso-900 text-brass-light border border-brass-dark shadow' : 'bg-parchment-light border border-parchment-border text-espresso-950 hover:bg-parchment'}">
-            ☕ ${b.buildName || `Build ${idx + 1}`}
-          </button>
-        `).join('');
-      } else {
-        tabsRow.classList.add('hidden');
-        tabsRow.innerHTML = '';
-      }
+        // Lógica dos Filtros
+        document.getElementById('searchInput').addEventListener('input', (e) => { currentSearch = e.target.value; renderGuides(); });
+        
+        document.querySelectorAll('#elementFilters .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#elementFilters .filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentElement = btn.dataset.element;
+                renderGuides();
+            });
+        });
 
-      // Preenchimento de Informações do Guia
-      document.getElementById('modalStatsGrid').innerHTML = (build.statsAim || []).map(s => `
-        <div class="bg-parchment-dark/70 p-1.5 rounded-lg border border-parchment-border flex justify-between">
-          <span class="text-parchment-muted font-semibold">${s.label}:</span>
-          <strong class="text-espresso-950">${s.val}</strong>
-        </div>
-      `).join('');
+        document.querySelectorAll('#weaponFilters .filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('#weaponFilters .filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                currentWeapon = btn.dataset.weapon;
+                renderGuides();
+            });
+        });
 
-      document.getElementById('modalTalentPriority').textContent = build.talentPriority || 'Geral';
-
-      document.getElementById('modalWeaponsList').innerHTML = (build.weapons || []).map(w => `
-        <div class="p-2.5 rounded-xl border ${w.bis ? 'bg-amber-50/80 border-brass shadow-sm' : 'bg-parchment-dark/60 border-parchment-border'}">
-          <div class="flex items-center gap-1 text-[11px] font-bold ${w.bis ? 'text-amber-800' : 'text-espresso-900'}">
-            ${w.bis ? '<i class="ph-fill ph-crown text-amber-600"></i>' : '<i class="ph-bold ph-shield-check"></i>'}
-            <span class="truncate">${w.name}</span>
-          </div>
-          <p class="text-[10px] text-parchment-muted mt-1 leading-snug">${w.note}</p>
-        </div>
-      `).join('');
-
-      document.getElementById('modalArtifactSets').innerHTML = (build.artifactSets || []).map(a => `
-        <div class="bg-parchment-dark/60 p-2 rounded-xl border border-parchment-border text-[11px]">
-          <strong class="text-espresso-900 block font-bold">${a.name}</strong>
-          <span class="text-parchment-muted text-[10px]">${a.note}</span>
-        </div>
-      `).join('');
-
-      const mainStats = build.mainStats || {};
-      document.getElementById('modalStatSands').textContent = mainStats.sands || '-';
-      document.getElementById('modalStatGoblet').textContent = mainStats.goblet || '-';
-      document.getElementById('modalStatCirclet').textContent = mainStats.circlet || '-';
-      document.getElementById('modalSubstatsPriority').textContent = mainStats.substats || 'Crítico > ATQ%';
-
-      document.getElementById('modalTeamsContainer').innerHTML = (build.teams || []).map(t => `
-        <div class="bg-parchment-dark/50 p-2.5 rounded-xl border border-parchment-border">
-          <span class="text-[11px] font-bold text-espresso-950 block mb-1.5">${t.name}</span>
-          <div class="flex flex-wrap gap-1.5">
-            ${(t.members || []).map(m => `
-              <span class="px-2 py-0.5 rounded-lg bg-parchment-light border border-parchment-border text-[11px] font-semibold text-espresso-900">
-                ☕ ${m}
-              </span>
-            `).join('')}
-          </div>
-        </div>
-      `).join('');
-
-      document.getElementById('modalCombatTip').textContent = build.notes || 'Sem observações adicionais para esta rotação.';
-
-      const modal = document.getElementById('fullGuideModal');
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeFullGuideModal() {
-      document.getElementById('fullGuideModal').classList.add('hidden');
-      document.body.style.overflow = '';
-    }
-
-    document.getElementById('fullGuideModal').addEventListener('click', (e) => {
-      if (e.target.id === 'fullGuideModal') closeFullGuideModal();
-    });
-  </script>
+        // Iniciar
+        document.addEventListener('DOMContentLoaded', loadGuides);
+    </script>
 </body>
 </html>
